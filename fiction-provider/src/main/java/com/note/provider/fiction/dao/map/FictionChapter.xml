@@ -12,8 +12,8 @@
     <result column="chapter_word_count" jdbcType="INTEGER" property="chapterWordCount" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
-    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode" />
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
   </resultMap>
 
@@ -28,8 +28,8 @@
     <result column="chapter_word_count" jdbcType="INTEGER" property="chapterWordCount" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
-    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode" />
     <result column="chapter_content" jdbcType="LONGVARBINARY" property="chapterContent" />
   </resultMap>
 
@@ -51,12 +51,12 @@
     insert into fiction_chapter (cid, logic_code, fiction_code, 
       chapter_sort, chapter_name, chapter_type, 
       chapter_views, chapter_word_count, create_time, 
-      modify_time, create_user_id, modify_user_id, 
+      modify_time, create_user_code, modify_user_code,
       is_delete)
     values (#{cid,jdbcType=INTEGER}, #{logicCode,jdbcType=VARCHAR}, #{fictionCode,jdbcType=VARCHAR}, 
       #{chapterSort,jdbcType=VARCHAR}, #{chapterName,jdbcType=VARCHAR}, #{chapterType,jdbcType=INTEGER}, 
       #{chapterViews,jdbcType=INTEGER}, #{chapterWordCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{modifyUserId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{createUserCode,jdbcType=VARCHAR}, #{modifyUserCode,jdbcType=VARCHAR},
       #{isDelete,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.note.entity.fiction.entity.FictionChapterEntity">
@@ -75,8 +75,8 @@
       chapter_word_count = #{chapterWordCount,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=VARCHAR},
-      modify_user_id = #{modifyUserId,jdbcType=VARCHAR},
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      modify_user_code = #{modifyUserCode,jdbcType=VARCHAR},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
@@ -87,14 +87,14 @@
       This element was generated on Sat Feb 25 22:52:36 CST 2017.
     -->
     select cid, logic_code, fiction_code, chapter_sort, chapter_name, chapter_type, chapter_views, 
-    chapter_word_count, create_time, modify_time, create_user_id, modify_user_id, is_delete
+    chapter_word_count, create_time, modify_time, create_user_code, modify_user_code, is_delete
     from fiction_chapter
     where cid = #{cid,jdbcType=INTEGER}
   </select>
 
   <select id="selectByCondition" parameterType="map" resultMap="BaseResultMap">
     select cid, logic_code, fiction_code, chapter_sort, chapter_name, chapter_type, chapter_views,
-    chapter_word_count, create_time, modify_time, create_user_id, modify_user_id, is_delete
+    chapter_word_count, create_time, modify_time, create_user_code, modify_user_code, is_delete
     from fiction_chapter
     <where>
       1=1
@@ -104,7 +104,7 @@
 
   <select id="findByLogicCode" parameterType="map" resultMap="infoResult">
     select fc.cid, fc.logic_code, fc.fiction_code, fc.chapter_sort, fc.chapter_name, fc.chapter_type, fc.chapter_views,
-    fc.chapter_word_count, fc.create_time, fc.modify_time, fc.create_user_id, fc.modify_user_id, fce.chapter_content
+    fc.chapter_word_count, fc.create_time, fc.modify_time, fc.create_user_code, fc.modify_user_code, fce.chapter_content
     from fiction_chapter fc
     left join fiction_chapter_extention fce on fc.logic_code=fce.chapter_code
     <where>

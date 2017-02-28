@@ -38,9 +38,9 @@ public class FictionChapterResp {
 
     private Date modifyTime;
 
-    private String createUserId;
+    private String createUserCode;
 
-    private String modifyUserId;
+    private String modifyUserCode;
 
     public Integer getCid() {
         return cid;
@@ -122,19 +122,19 @@ public class FictionChapterResp {
         this.modifyTime = modifyTime;
     }
 
-    public String getCreateUserId() {
-        return createUserId;
+    public String getcreateUserCode() {
+        return createUserCode;
     }
 
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
+    public void setcreateUserCode(String createUserCode) {
+        this.createUserCode = createUserCode;
     }
 
-    public String getModifyUserId() {
-        return modifyUserId;
+    public String getmodifyUserCode() {
+        return modifyUserCode;
     }
 
-    public void setModifyUserId(String modifyUserId) {
-        this.modifyUserId = modifyUserId;
+    public void setmodifyUserCode(String modifyUserCode) {
+        this.modifyUserCode = modifyUserCode;
     }
 }

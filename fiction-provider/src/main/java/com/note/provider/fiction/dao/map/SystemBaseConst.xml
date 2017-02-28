@@ -16,8 +16,8 @@
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
-    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
@@ -36,12 +36,12 @@
     -->
     insert into system_base_const (cid, logic_code, module, 
       key, value, desc, is_delete, 
-      create_time, modify_time, create_user_id, 
-      modify_user_id)
+      create_time, modify_time, create_user_code,
+      modify_user_code)
     values (#{cid,jdbcType=INTEGER}, #{logicCode,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, 
       #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, 
-      #{modifyUserId,jdbcType=VARCHAR})
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{createUserCode,jdbcType=VARCHAR},
+      #{modifyUserCode,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.note.entity.fiction.entity.SystemBaseConstEntity">
     <!--
@@ -58,8 +58,8 @@
       is_delete = #{isDelete,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=VARCHAR},
-      modify_user_id = #{modifyUserId,jdbcType=VARCHAR}
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      modify_user_code = #{modifyUserCode,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -69,7 +69,7 @@
       This element was generated on Sat Feb 25 22:52:36 CST 2017.
     -->
     select cid, logic_code, module, key, value, desc, is_delete, create_time, modify_time, 
-    create_user_id, modify_user_id
+    create_user_code, modify_user_code
     from system_base_const
     where cid = #{cid,jdbcType=INTEGER}
   </select>
@@ -80,7 +80,7 @@
       This element was generated on Sat Feb 25 22:52:36 CST 2017.
     -->
     select cid, logic_code, module, key, value, desc, is_delete, create_time, modify_time, 
-    create_user_id, modify_user_id
+    create_user_code, modify_user_code
     from system_base_const
   </select>
 </mapper>

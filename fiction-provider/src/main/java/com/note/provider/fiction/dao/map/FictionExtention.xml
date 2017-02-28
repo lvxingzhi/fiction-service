@@ -20,8 +20,8 @@
     <result column="last_chapter_code" jdbcType="VARCHAR" property="lastChapterCode" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
-    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode" />
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -43,13 +43,13 @@
       full_desc, total_chapter, last_update_time, 
       level, fiction_views, last_chapter_name, 
       last_chapter_Code, create_time, modify_time, 
-      create_user_id, modify_user_id, is_delete
+      create_user_code, modify_user_code, is_delete
       )
     values (#{cid,jdbcType=INTEGER}, #{logicCode,jdbcType=VARCHAR}, #{fictionCode,jdbcType=VARCHAR}, 
       #{fullDesc,jdbcType=VARCHAR}, #{totalChapter,jdbcType=INTEGER}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
       #{level,jdbcType=INTEGER}, #{fictionViews,jdbcType=INTEGER}, #{lastChapterName,jdbcType=VARCHAR}, 
       #{lastChapterId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{createUserId,jdbcType=VARCHAR}, #{modifyUserId,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}
+      #{createUserCode,jdbcType=VARCHAR}, #{modifyUserCode,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.note.entity.fiction.entity.FictionExtentionEntity">
@@ -70,8 +70,8 @@
       last_chapter_code = #{lastChapterId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=VARCHAR},
-      modify_user_id = #{modifyUserId,jdbcType=VARCHAR},
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      modify_user_code = #{modifyUserCode,jdbcType=VARCHAR},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
@@ -83,7 +83,7 @@
     -->
     select cid, logic_code, fiction_code, full_desc, total_chapter, last_update_time, 
     level, fiction_views, last_chapter_name, last_chapter_code, create_time, modify_time, 
-    create_user_id, modify_user_id, is_delete
+    create_user_code, modify_user_code, is_delete
     from fiction_extention
     where cid = #{cid,jdbcType=INTEGER}
   </select>
@@ -95,7 +95,7 @@
     -->
     select cid, logic_code, fiction_code, full_desc, total_chapter, last_update_time, fiction_score,
     level, fiction_views, last_chapter_name, last_chapter_code, create_time, modify_time, 
-    create_user_id, modify_user_id, is_delete
+    create_user_code, modify_user_code, is_delete
     from fiction_extention
   </select>
 </mapper>

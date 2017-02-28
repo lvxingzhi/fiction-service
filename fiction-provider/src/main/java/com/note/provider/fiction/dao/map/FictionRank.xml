@@ -11,8 +11,8 @@
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
-    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode" />
   </resultMap>
 
   <resultMap id="result" type="com.note.provider.fiction.dto.response.FictionSearchResp">
@@ -42,11 +42,11 @@
     insert into fiction_rank (cid, logic_code, fiction_code, 
       fiction_name, fiction_score, fiction_views, 
       is_delete, create_time, modify_time, 
-      create_user_id, modify_user_id)
+      create_user_code, modify_user_code)
     values (#{cid,jdbcType=INTEGER}, #{logicCode,jdbcType=VARCHAR}, #{fictionCode,jdbcType=VARCHAR}, 
       #{fictionName,jdbcType=VARCHAR}, #{fictionScore,jdbcType=DOUBLE}, #{fictionViews,jdbcType=INTEGER}, 
       #{isDelete,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{createUserId,jdbcType=VARCHAR}, #{modifyUserId,jdbcType=VARCHAR})
+      #{createUserCode,jdbcType=VARCHAR}, #{modifyUserCode,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.note.entity.fiction.entity.FictionRankEntity">
     <!--
@@ -63,8 +63,8 @@
       is_delete = #{isDelete,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=VARCHAR},
-      modify_user_id = #{modifyUserId,jdbcType=VARCHAR}
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      modify_user_code = #{modifyUserCode,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -74,7 +74,7 @@
       This element was generated on Sat Feb 25 22:52:36 CST 2017.
     -->
     select cid, logic_code, fiction_code, fiction_name, fiction_score, fiction_views, 
-    is_delete, create_time, modify_time, create_user_id, modify_user_id
+    is_delete, create_time, modify_time, create_user_code, modify_user_code
     from fiction_rank
     where cid = #{cid,jdbcType=INTEGER}
   </select>

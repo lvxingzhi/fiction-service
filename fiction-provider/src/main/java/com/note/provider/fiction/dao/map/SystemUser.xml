@@ -20,8 +20,8 @@
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
-    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode" />
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -43,13 +43,13 @@
       phone, photo, type, 
       level, login_name, login_password, 
       email, address, create_time, 
-      modify_time, create_user_id, modify_user_id, 
+      modify_time, create_user_code, modify_user_code,
       is_delete)
     values (#{cid,jdbcType=INTEGER}, #{logicCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
       #{level,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{modifyUserId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{createUserCode,jdbcType=VARCHAR}, #{modifyUserCode,jdbcType=VARCHAR},
       #{isDelete,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.note.entity.fiction.entity.SystemUserEntity">
@@ -71,8 +71,8 @@
       address = #{address,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=VARCHAR},
-      modify_user_id = #{modifyUserId,jdbcType=VARCHAR},
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      modify_user_code = #{modifyUserCode,jdbcType=VARCHAR},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
@@ -83,7 +83,7 @@
       This element was generated on Sat Feb 25 22:52:36 CST 2017.
     -->
     select cid, logic_code, name, phone, photo, type, level, login_name, login_password, 
-    email, address, create_time, modify_time, create_user_id, modify_user_id, is_delete
+    email, address, create_time, modify_time, create_user_code, modify_user_code, is_delete
     from system_user
     where cid = #{cid,jdbcType=INTEGER}
   </select>
@@ -94,7 +94,7 @@
       This element was generated on Sat Feb 25 22:52:36 CST 2017.
     -->
     select cid, logic_code, name, phone, photo, type, level, login_name, login_password, 
-    email, address, create_time, modify_time, create_user_id, modify_user_id, is_delete
+    email, address, create_time, modify_time, create_user_code, modify_user_code, is_delete
     from system_user
   </select>
 </mapper>

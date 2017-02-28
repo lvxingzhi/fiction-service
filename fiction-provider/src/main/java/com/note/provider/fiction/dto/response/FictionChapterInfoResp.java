@@ -38,9 +38,9 @@ public class FictionChapterInfoResp {
 
     private Date modifyTime;
 
-    private String createUserId;
+    private String createUserCode;
 
-    private String modifyUserId;
+    private String modifyUserCode;
 
     private byte[] chapterContent;
 
@@ -124,20 +124,20 @@ public class FictionChapterInfoResp {
         this.modifyTime = modifyTime;
     }
 
-    public String getCreateUserId() {
-        return createUserId;
+    public String getcreateUserCode() {
+        return createUserCode;
     }
 
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
+    public void setcreateUserCode(String createUserCode) {
+        this.createUserCode = createUserCode;
     }
 
-    public String getModifyUserId() {
-        return modifyUserId;
+    public String getmodifyUserCode() {
+        return modifyUserCode;
     }
 
-    public void setModifyUserId(String modifyUserId) {
-        this.modifyUserId = modifyUserId;
+    public void setmodifyUserCode(String modifyUserCode) {
+        this.modifyUserCode = modifyUserCode;
     }
 
     public byte[] getChapterContent() {
