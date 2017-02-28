@@ -7,7 +7,7 @@
     <context:component-scan base-package="com.note"  />
 
 
-    <dubbo:application name="fiction-service" ></dubbo:application>
+    <dubbo:application name="fiction-service" />
     <dubbo:registry address="multicast://224.5.6.7:1234" />
     <dubbo:protocol name="dubbo" port="20880" />
     <dubbo:provider timeout="3000" />
@@ -15,6 +15,9 @@
         <dubbo:method name="search" retries="3" />
         <dubbo:method name="searchFull" retries="3" />
         <dubbo:method name="searchRankList" retries="3" />
+        <dubbo:method name="findFictionInfo" retries="3" />
+        <dubbo:method name="selectFictionChapters" retries="3" />
+        <dubbo:method name="findChapterInfo" retries="3" />
         <dubbo:method name="searchNewList" retries="3" />
     </dubbo:service>
 
