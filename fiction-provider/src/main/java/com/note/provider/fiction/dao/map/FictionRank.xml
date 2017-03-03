@@ -15,7 +15,7 @@
     <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode" />
   </resultMap>
 
-  <resultMap id="result" type="com.note.provider.fiction.dto.response.FictionSearchResp">
+  <resultMap id="result" type="com.note.provider.fiction.dto.response.FictionRankSearchResp">
     <result column="fiction_code" jdbcType="VARCHAR" property="fictionCode" />
     <result column="fiction_name" jdbcType="VARCHAR" property="fictionName" />
     <result column="fiction_score" jdbcType="DOUBLE" property="fictionScore" />

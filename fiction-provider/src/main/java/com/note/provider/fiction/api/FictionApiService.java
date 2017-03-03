@@ -10,16 +10,16 @@ public interface FictionApiService {
 
     String search(String json) throws SQLException, IOException;
 
-    String searchFull(String json) throws SQLException, IOException;
+    String findFull(String json) throws SQLException, IOException;
 
-    String searchRankList(String json) throws SQLException, IOException;
+    String findRankList(String json) throws SQLException, IOException;
 
     String findFictionInfo(String json) throws SQLException, IOException;
 
-    String selectFictionChapters(String json) throws SQLException, IOException;
+    String findFictionChapters(String json) throws SQLException, IOException;
 
     String findChapterInfo(String json) throws SQLException, IOException;
 
-    String searchNewList(String json) throws SQLException, IOException;
+    String findNewList(String json) throws SQLException, IOException;
 
 }

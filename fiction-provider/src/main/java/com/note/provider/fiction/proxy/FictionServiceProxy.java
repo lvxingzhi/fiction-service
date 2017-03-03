@@ -32,31 +32,25 @@ public class FictionServiceProxy implements FictionApiService {
     @Resource(name = "fiction.service.fictionChapterService")
     private FictionChapterService fictionChapterService;
 
-
-
-    @Override
     public String search(String json) throws SQLException, IOException {
         List<FictionBaseEntity> list = fictionBaseService.selectByCondition(json);
         return gson.toJson(list);
     }
 
-    @Override
-    public String searchFull(String json) throws SQLException, IOException {
+    public String findFull(String json) throws SQLException, IOException {
         FictionSearchReq fictionSearchReq = gson.fromJson(json, new TypeToken<FictionSearchReq>() {
         }.getType());
         List<FictionSearchResp> list = fictionBaseService.selectFullByCondition(fictionSearchReq);
         return gson.toJson(list);
     }
 
-    @Override
-    public String searchRankList(String json) throws SQLException, IOException {
+    public String findRankList(String json) throws SQLException, IOException {
         FictionRankSearchReq fictionRankSearchReq = gson.fromJson(json, new TypeToken<FictionRankSearchReq>() {
         }.getType());
         List<FictionRankSearchResp> list = fictionRankService.searchByCondition(fictionRankSearchReq);
         return gson.toJson(list);
     }
 
-    @Override
     public String findFictionInfo(String json) throws SQLException, IOException {
         FictionFindOneReq fictionFindOneReq = gson.fromJson(json, new TypeToken<FictionFindOneReq>() {
         }.getType());
@@ -64,15 +58,13 @@ public class FictionServiceProxy implements FictionApiService {
         return gson.toJson(result);
     }
 
-    @Override
-    public String selectFictionChapters(String json) throws SQLException, IOException {
+    public String findFictionChapters(String json) throws SQLException, IOException {
         FictionChapterReq fictionChapterReq = gson.fromJson(json, new TypeToken<FictionChapterReq>() {
         }.getType());
         List<FictionChapterResp> list = fictionChapterService.searchByCondition(fictionChapterReq);
         return gson.toJson(list);
     }
 
-    @Override
     public String findChapterInfo(String json) throws SQLException, IOException {
         FictionChapterInfoReq fictionChapterInfoReq = gson.fromJson(json, new TypeToken<FictionChapterInfoReq>() {
         }.getType());
@@ -80,8 +72,7 @@ public class FictionServiceProxy implements FictionApiService {
         return gson.toJson(result);
     }
 
-    @Override
-    public String searchNewList(String json) throws SQLException, IOException {
+    public String findNewList(String json) throws SQLException, IOException {
         List<FictionBaseEntity> list = fictionBaseService.selectByCondition(json);
         return gson.toJson(list);
     }

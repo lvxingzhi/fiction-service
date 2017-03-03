@@ -62,6 +62,8 @@ public class FictionFindOneResp {
      * 创建者CODE
      */
     private String createUserCode;
+
+
     /**
      * 详细描述
      */
@@ -70,6 +72,8 @@ public class FictionFindOneResp {
      * 章节总数
      */
     private Integer totalChapter;
+
+    private Integer totalWord;
     /**
      * 最近更新时间
      */
@@ -244,5 +248,13 @@ public class FictionFindOneResp {
 
     public void setFictionScore(Double fictionScore) {
         this.fictionScore = fictionScore;
+    }
+
+    public Integer getTotalWord() {
+        return totalWord;
+    }
+
+    public void setTotalWord(Integer totalWord) {
+        this.totalWord = totalWord;
     }
 }

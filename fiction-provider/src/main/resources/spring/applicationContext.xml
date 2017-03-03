@@ -13,12 +13,12 @@
     <dubbo:provider timeout="3000" />
     <dubbo:service interface="com.note.provider.fiction.api.FictionApiService" ref="fiction.service.fictionServiceProxy">
         <dubbo:method name="search" retries="3" />
-        <dubbo:method name="searchFull" retries="3" />
-        <dubbo:method name="searchRankList" retries="3" />
+        <dubbo:method name="findFull" retries="3" />
+        <dubbo:method name="findRankList" retries="3" />
         <dubbo:method name="findFictionInfo" retries="3" />
-        <dubbo:method name="selectFictionChapters" retries="3" />
+        <dubbo:method name="findFictionChapters" retries="3" />
         <dubbo:method name="findChapterInfo" retries="3" />
-        <dubbo:method name="searchNewList" retries="3" />
+        <dubbo:method name="findNewList" retries="3" />
     </dubbo:service>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">

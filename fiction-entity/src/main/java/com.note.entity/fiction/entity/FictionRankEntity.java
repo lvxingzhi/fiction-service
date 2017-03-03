@@ -48,7 +48,6 @@ public class FictionRankEntity {
      */
     private Integer fictionScore;
 
-    private Integer fictionScoreNum;
 
     /**
      *
@@ -142,14 +141,6 @@ public class FictionRankEntity {
 
     public void setFictionScore(Integer fictionScore) {
         this.fictionScore = fictionScore;
-    }
-
-    public Integer getFictionScoreNum() {
-        return fictionScoreNum;
-    }
-
-    public void setFictionScoreNum(Integer fictionScoreNum) {
-        this.fictionScoreNum = fictionScoreNum;
     }
 
     public Integer getFictionViews() {

@@ -37,6 +37,8 @@ public class FictionSearchReq {
      */
     private String orderByType;
 
+    private Integer fictionStatus;
+
     public String getTitle() {
         return title;
     }
@@ -75,5 +77,13 @@ public class FictionSearchReq {
 
     public void setOrderByType(String orderByType) {
         this.orderByType = orderByType;
+    }
+
+    public Integer getFictionStatus() {
+        return fictionStatus;
+    }
+
+    public void setFictionStatus(Integer fictionStatus) {
+        this.fictionStatus = fictionStatus;
     }
 }
