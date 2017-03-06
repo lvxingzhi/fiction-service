@@ -61,6 +61,7 @@
         <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
         <result column="level" jdbcType="INTEGER" property="level" />
         <result column="fiction_views" jdbcType="INTEGER" property="fictionViews" />
+        <result column="fiction_score_num" jdbcType="INTEGER" property="fictionScoreNum" />
         <result column="fiction_score" jdbcType="DOUBLE" property="fictionScore" />
         <result column="last_chapter_name" jdbcType="VARCHAR" property="lastChapterName" />
         <result column="last_chapter_code" jdbcType="VARCHAR" property="lastChapterCode" />
@@ -119,7 +120,7 @@
         select
         fb.cid,fb.logic_code,fb.title,fb.short_desc,fb.fiction_status,fb.cover_photo,fb.author_code,fb.author_name,
         fb.type_code,fb.type_name,fb.create_time,fb.create_user_code,fext.full_desc,fext.total_word,
-        fext.total_chapter,fext.last_update_time,fext.level,fext.fiction_views,fext.score_num,fext.fiction_score,fext.last_chapter_name,fext.last_chapter_code
+        fext.total_chapter,fext.last_update_time,fext.level,fext.fiction_views,fext.fiction_score_num,fext.fiction_score,fext.last_chapter_name,fext.last_chapter_code
         from fiction_base fb
         left join fiction_extention fext on fb.logic_code=fext.fiction_code
         <where>

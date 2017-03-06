@@ -98,7 +98,7 @@
     from fiction_chapter
     <where>
       1=1
-      and logic_code=#{fictionCode,jdbcType=VARCHAR}
+      and logic_code=#{searchContent.fictionCode,jdbcType=VARCHAR}
     </where>
   </select>
 
@@ -109,7 +109,7 @@
     left join fiction_chapter_extention fce on fc.logic_code=fce.chapter_code
     <where>
       1=1
-      and fc.logic_code=#{chapterCode,jdbcType=VARCHAR}
+      and fc.logic_code=#{searchContent.chapterCode,jdbcType=VARCHAR}
     </where>
   </select>
 

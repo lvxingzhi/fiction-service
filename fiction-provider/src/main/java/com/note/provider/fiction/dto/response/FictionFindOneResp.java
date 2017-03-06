@@ -88,6 +88,8 @@ public class FictionFindOneResp {
     private Integer fictionViews;
 
     private Double fictionScore;
+
+    private Integer fictionScoreNum;
     /**
      * 最近更新章节名称
      */
@@ -256,5 +258,13 @@ public class FictionFindOneResp {
 
     public void setTotalWord(Integer totalWord) {
         this.totalWord = totalWord;
+    }
+
+    public Integer getFictionScoreNum() {
+        return fictionScoreNum;
+    }
+
+    public void setFictionScoreNum(Integer fictionScoreNum) {
+        this.fictionScoreNum = fictionScoreNum;
     }
 }

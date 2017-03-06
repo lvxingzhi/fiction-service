@@ -44,6 +44,8 @@ public class FictionChapterInfoResp {
 
     private byte[] chapterContent;
 
+    private String chapterContentStr;
+
     public Integer getCid() {
         return cid;
     }
@@ -124,27 +126,35 @@ public class FictionChapterInfoResp {
         this.modifyTime = modifyTime;
     }
 
-    public String getcreateUserCode() {
-        return createUserCode;
-    }
-
-    public void setcreateUserCode(String createUserCode) {
-        this.createUserCode = createUserCode;
-    }
-
-    public String getmodifyUserCode() {
-        return modifyUserCode;
-    }
-
-    public void setmodifyUserCode(String modifyUserCode) {
-        this.modifyUserCode = modifyUserCode;
-    }
-
     public byte[] getChapterContent() {
         return chapterContent;
     }
 
     public void setChapterContent(byte[] chapterContent) {
         this.chapterContent = chapterContent;
+    }
+
+    public String getCreateUserCode() {
+        return createUserCode;
+    }
+
+    public void setCreateUserCode(String createUserCode) {
+        this.createUserCode = createUserCode;
+    }
+
+    public String getModifyUserCode() {
+        return modifyUserCode;
+    }
+
+    public void setModifyUserCode(String modifyUserCode) {
+        this.modifyUserCode = modifyUserCode;
+    }
+
+    public String getChapterContentStr() {
+        return chapterContentStr;
+    }
+
+    public void setChapterContentStr(String chapterContentStr) {
+        this.chapterContentStr = chapterContentStr;
     }
 }

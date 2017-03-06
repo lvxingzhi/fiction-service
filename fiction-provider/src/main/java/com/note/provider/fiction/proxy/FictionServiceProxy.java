@@ -69,6 +69,7 @@ public class FictionServiceProxy implements FictionApiService {
         FictionChapterInfoReq fictionChapterInfoReq = gson.fromJson(json, new TypeToken<FictionChapterInfoReq>() {
         }.getType());
         FictionChapterInfoResp result = fictionChapterService.findChapterInfo(fictionChapterInfoReq);
+        result.setChapterContentStr(new String(result.getChapterContent(),"gbk"));
         return gson.toJson(result);
     }
 
