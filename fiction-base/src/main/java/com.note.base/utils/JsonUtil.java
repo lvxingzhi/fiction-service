@@ -1,7 +1,8 @@
 package com.note.base.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
+
+import java.lang.reflect.Type;
 
 /**
  * <p>TODO </p>
@@ -24,6 +25,30 @@ public class JsonUtil {
             .create();
 
     private JsonUtil(){
-
     }
+
+    public <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
+        return gson.fromJson(json,classOfT);
+    }
+
+    public <T> T fromJson(JsonElement json, Type typeOfT) throws JsonSyntaxException {
+        return gson.fromJson(json,typeOfT);
+    }
+
+    public <T> T fromJson(String json, Class<T> classOfT) throws JsonSyntaxException {
+        return gson.fromJson(json,classOfT);
+    }
+
+    public <T> T fromJson(String json, Type typeOfT) throws JsonSyntaxException {
+        return gson.fromJson(json,typeOfT);
+    }
+
+    public String toJson(JsonElement jsonElement) {
+        return gson.toJson(jsonElement);
+    }
+
+    public String toJson(Object src) {
+        return gson.toJson(src);
+    }
+
 }
