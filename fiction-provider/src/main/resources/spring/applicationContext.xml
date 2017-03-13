@@ -1,47 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <context:component-scan base-package="com.note"  />
+    <context:component-scan base-package="com.note"/>
 
 
-    <dubbo:application name="fiction-service" />
-    <dubbo:registry address="multicast://224.5.6.7:1234" />
-    <dubbo:protocol name="dubbo" port="20880" />
-    <dubbo:provider timeout="3000" />
-    <dubbo:service interface="com.note.provider.fiction.api.FictionApiService" ref="fiction.service.fictionServiceProxy">
-        <dubbo:method name="search" retries="3" />
-        <dubbo:method name="findFull" retries="3" />
-        <dubbo:method name="findRankList" retries="3" />
-        <dubbo:method name="findFictionInfo" retries="3" />
-        <dubbo:method name="findFictionChapters" retries="3" />
-        <dubbo:method name="findChapterInfo" retries="3" />
-        <dubbo:method name="findNewList" retries="3" />
+    <dubbo:application name="fiction-service"/>
+    <dubbo:registry address="multicast://224.5.6.7:1234"/>
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:provider timeout="3000"/>
+    <dubbo:service interface="com.note.provider.fiction.api.FictionApiService"
+                   ref="fiction.service.fictionServiceProxy">
+        <dubbo:method name="search" retries="3"/>
+        <dubbo:method name="findFull" retries="3"/>
+        <dubbo:method name="findRankList" retries="3"/>
+        <dubbo:method name="findFictionInfo" retries="3"/>
+        <dubbo:method name="findFictionChapters" retries="3"/>
+        <dubbo:method name="findChapterInfo" retries="3"/>
+        <dubbo:method name="findNewList" retries="3"/>
     </dubbo:service>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/fiction?useSSL=true" />
-        <property name="username" value="note" />
-        <property name="password" value="note" />
-        <property name="initialSize" value="2" />
-        <property name="maxActive" value="10" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/fiction?useSSL=true"/>
+        <property name="username" value="note"/>
+        <property name="password" value="note"/>
+        <property name="initialSize" value="2"/>
+        <property name="maxActive" value="10"/>
     </bean>
 
     <!--<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />-->
 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath*:com/note/provider/fiction/dao/map/*.xml" />
-        <property name="configLocation" value="classpath:mybatis-config.xml" />
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath*:com/note/provider/fiction/dao/map/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
     <bean id="sessionContext" class="com.note.base.dao.SessionContext">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"  />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" rollback-for="java.lang.Exception" read-only="false" propagation="REQUIRED"/>
+            <tx:method name="delete*" rollback-for="java.lang.Exception" read-only="false" propagation="REQUIRED"/>
+            <tx:method name="del*" rollback-for="java.lang.Exception" read-only="false" propagation="REQUIRED"/>
+            <tx:method name="update*" rollback-for="java.lang.Exception" read-only="false" propagation="REQUIRED"/>
+            <tx:method name="insert*" rollback-for="java.lang.Exception" read-only="false" propagation="REQUIRED"/>
+            <tx:method name="create*" rollback-for="java.lang.Exception" read-only="false" propagation="REQUIRED"/>
+
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="get*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="select*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="query*" read-only="true" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="txPoint" expression="execution(public * com.note.provider.fiction.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint" />
+    </aop:config>
 
 
 </beans>

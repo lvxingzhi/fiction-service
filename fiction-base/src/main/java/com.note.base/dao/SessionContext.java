@@ -1,6 +1,5 @@
 package com.note.base.dao;
 
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
@@ -34,10 +33,6 @@ public class SessionContext extends SqlSessionDaoSupport {
         return this.getSqlSession().selectList(name,object);
     }
 
-    public <E> List<E> selectList(String name, Object object, RowBounds rowBounds){
-        return this.getSqlSession().selectList(name,object,rowBounds);
-    }
-
     public <E> E selectOne(String name){
         return this.getSqlSession().selectOne(name);
     }
@@ -45,5 +40,6 @@ public class SessionContext extends SqlSessionDaoSupport {
     public <E> E selectOne(String name,Object object){
         return this.getSqlSession().selectOne(name,object);
     }
+
 
 }
