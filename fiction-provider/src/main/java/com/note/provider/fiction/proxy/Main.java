@@ -14,10 +14,10 @@ public class Main {
     public static void main(String[] args) throws IOException, SQLException {
         Logger logger = LoggerFactory.getLogger(Main.class);
         logger.trace("trace");
-//        ClassPathXmlAppl icationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:spring/applicationContext.xml"});
+//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:spring/applicationContext.xml"});
 //        context.start();
 //        FictionServiceProxy fictionServiceProxy = (FictionServiceProxy) context.getBean("fiction.service.fictionServiceProxy");
-//        String list =  fictionServiceProxy.search();
+//        String list =  fictionServiceProxy.search("");
 //        System.out.println(list);
         com.alibaba.dubbo.container.Main.main(args);
         logger.trace("trace");

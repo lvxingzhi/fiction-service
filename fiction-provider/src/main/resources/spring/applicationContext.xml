@@ -38,6 +38,9 @@
         <property name="configLocation" value="classpath:mybatis-config.xml" />
     </bean>
 
+    <bean id="sessionContext" class="com.note.base.dao.SessionContext">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"  />
+    </bean>
 
 
 
