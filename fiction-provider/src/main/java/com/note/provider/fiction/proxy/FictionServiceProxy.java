@@ -1,6 +1,7 @@
 package com.note.provider.fiction.proxy;
 
 import com.google.gson.reflect.TypeToken;
+import com.note.base.utils.JsonUtil;
 import com.note.entity.fiction.entity.FictionBaseEntity;
 import com.note.provider.fiction.api.FictionApiService;
 import com.note.provider.fiction.dto.request.*;
@@ -15,10 +16,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.note.base.utils.JsonUtil.gson;
-
 /**
- * Created by Administrator on 2017/2/12.
+ * 业务
  */
 @Component("fiction.service.fictionServiceProxy")
 public class FictionServiceProxy implements FictionApiService {
@@ -34,48 +33,48 @@ public class FictionServiceProxy implements FictionApiService {
 
     public String search(String json) throws SQLException, IOException {
         List<FictionBaseEntity> list = fictionBaseService.selectByCondition(json);
-        return gson.toJson(list);
+        return JsonUtil.toJson(list);
     }
 
     public String findFull(String json) throws SQLException, IOException {
-        FictionSearchReq fictionSearchReq = gson.fromJson(json, new TypeToken<FictionSearchReq>() {
+        FictionSearchReq fictionSearchReq = JsonUtil.fromJson(json, new TypeToken<FictionSearchReq>() {
         }.getType());
         List<FictionSearchResp> list = fictionBaseService.selectFullByCondition(fictionSearchReq);
-        return gson.toJson(list);
+        return JsonUtil.toJson(list);
     }
 
     public String findRankList(String json) throws SQLException, IOException {
-        FictionRankSearchReq fictionRankSearchReq = gson.fromJson(json, new TypeToken<FictionRankSearchReq>() {
+        FictionRankSearchReq fictionRankSearchReq = JsonUtil.fromJson(json, new TypeToken<FictionRankSearchReq>() {
         }.getType());
         List<FictionRankSearchResp> list = fictionRankService.searchByCondition(fictionRankSearchReq);
-        return gson.toJson(list);
+        return JsonUtil.toJson(list);
     }
 
     public String findFictionInfo(String json) throws SQLException, IOException {
-        FictionFindOneReq fictionFindOneReq = gson.fromJson(json, new TypeToken<FictionFindOneReq>() {
+        FictionFindOneReq fictionFindOneReq = JsonUtil.fromJson(json, new TypeToken<FictionFindOneReq>() {
         }.getType());
         FictionFindOneResp result = fictionBaseService.findOneByCondition(fictionFindOneReq);
-        return gson.toJson(result);
+        return JsonUtil.toJson(result);
     }
 
     public String findFictionChapters(String json) throws SQLException, IOException {
-        FictionChapterReq fictionChapterReq = gson.fromJson(json, new TypeToken<FictionChapterReq>() {
+        FictionChapterReq fictionChapterReq = JsonUtil.fromJson(json, new TypeToken<FictionChapterReq>() {
         }.getType());
         List<FictionChapterResp> list = fictionChapterService.searchByCondition(fictionChapterReq);
-        return gson.toJson(list);
+        return JsonUtil.toJson(list);
     }
 
     public String findChapterInfo(String json) throws SQLException, IOException {
-        FictionChapterInfoReq fictionChapterInfoReq = gson.fromJson(json, new TypeToken<FictionChapterInfoReq>() {
+        FictionChapterInfoReq fictionChapterInfoReq = JsonUtil.fromJson(json, new TypeToken<FictionChapterInfoReq>() {
         }.getType());
         FictionChapterInfoResp result = fictionChapterService.findChapterInfo(fictionChapterInfoReq);
         result.setChapterContentStr(new String(result.getChapterContent(),"gbk"));
-        return gson.toJson(result);
+        return JsonUtil.toJson(result);
     }
 
     public String findNewList(String json) throws SQLException, IOException {
         List<FictionBaseEntity> list = fictionBaseService.selectByCondition(json);
-        return gson.toJson(list);
+        return JsonUtil.toJson(list);
     }
 
 

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Administrator on 2017/2/8.
+ * 启动类
  */
 public class Main {
 

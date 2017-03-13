@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Administrator on 2017/2/12.
+ * dubbo暴露接口
  */
 public interface FictionApiService {
 

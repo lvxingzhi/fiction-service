@@ -27,27 +27,27 @@ public class JsonUtil {
     private JsonUtil(){
     }
 
-    public <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
+    public static <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
         return gson.fromJson(json,classOfT);
     }
 
-    public <T> T fromJson(JsonElement json, Type typeOfT) throws JsonSyntaxException {
+    public static <T> T fromJson(JsonElement json, Type typeOfT) throws JsonSyntaxException {
         return gson.fromJson(json,typeOfT);
     }
 
-    public <T> T fromJson(String json, Class<T> classOfT) throws JsonSyntaxException {
+    public static <T> T fromJson(String json, Class<T> classOfT) throws JsonSyntaxException {
         return gson.fromJson(json,classOfT);
     }
 
-    public <T> T fromJson(String json, Type typeOfT) throws JsonSyntaxException {
+    public static <T> T fromJson(String json, Type typeOfT) throws JsonSyntaxException {
         return gson.fromJson(json,typeOfT);
     }
 
-    public String toJson(JsonElement jsonElement) {
+    public static String toJson(JsonElement jsonElement) {
         return gson.toJson(jsonElement);
     }
 
-    public String toJson(Object src) {
+    public static String toJson(Object src) {
         return gson.toJson(src);
     }
 
