@@ -92,7 +92,7 @@
             <if test="searchContent.title!=null and searchContent.title!=''" >
                 and fb.title like concat(#{searchContent.title},'%')
             </if>
-            <if test="authorName!=null and searchContent.authorName!=''" >
+            <if test="searchContent.authorName!=null and searchContent.authorName!=''" >
                 and fb.author_name = #{authorName}
             </if>
             <if test="searchContent.authorCode!=null and searchContent.authorCode!=''" >

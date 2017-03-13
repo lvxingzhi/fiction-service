@@ -8,8 +8,8 @@
     <artifactId>fiction-service</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>fiction-entity</module>
         <module>fiction-base</module>
+        <module>fiction-entity</module>
         <module>fiction-provider</module>
     </modules>
     <packaging>pom</packaging>
@@ -29,6 +29,7 @@
         <logback.version>1.2.1</logback.version>
         <jcl-over-slf4j.version>1.7.22</jcl-over-slf4j.version>
         <generator-version>1.3.5</generator-version>
+        <aspectjweaver-version>1.8.10</aspectjweaver-version>
     </properties>
 
     <dependencyManagement>
@@ -60,6 +61,28 @@
                 <artifactId>spring-context</artifactId>
                 <version>${spring.base.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.base.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjweaver-version}</version>
+            </dependency>
+
             <!--dubbo -->
             <dependency>
                 <groupId>com.alibaba</groupId>

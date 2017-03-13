@@ -29,6 +29,10 @@ public class FictionSearchReq {
      */
     private String authorCode;
     /**
+     * 作者姓名
+     */
+    private String authorName;
+    /**
      * 排序类型
      */
     private String orderBy;
@@ -85,5 +89,13 @@ public class FictionSearchReq {
 
     public void setFictionStatus(Integer fictionStatus) {
         this.fictionStatus = fictionStatus;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }
