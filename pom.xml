@@ -74,6 +74,10 @@
                         <artifactId>javassist</artifactId>
                         <groupId>org.javassist</groupId>
                     </exclusion>
+                    <exclusion>
+                        <artifactId>spring</artifactId>
+                        <groupId>org.springframework</groupId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <!--commons-dbcp -->
