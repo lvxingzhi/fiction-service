@@ -5,10 +5,10 @@ package com.note.base.dto;
  */
 public class PageDto {
 
-    private static final int MIN = 1;
-    private static final int MAX = 19891222;
+    public static final int MIN = 1;
+    public static final int MAX = 19891222;
 
-    private static final int DEFAULT_SIZE=50;
+    public static final int DEFAULT_SIZE=50;
 
     private int page = MIN;
     private int size = DEFAULT_SIZE;
