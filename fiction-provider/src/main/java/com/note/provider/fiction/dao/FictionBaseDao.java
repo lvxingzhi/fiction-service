@@ -5,6 +5,7 @@ import com.note.base.dao.SessionContext;
 import com.note.entity.fiction.entity.FictionBaseEntity;
 import com.note.provider.fiction.dto.response.FictionFindOneResp;
 import com.note.provider.fiction.dto.response.FictionSearchResp;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -25,13 +26,13 @@ public class FictionBaseDao extends BaseDao {
         return sessionContext;
     }
 
-    public List<FictionBaseEntity> selectByCondition(Map map){
-        List<FictionBaseEntity> list = sessionContext.selectList(this.getClass().getName()+".selectByCondition",map);
+    public List<FictionBaseEntity> selectByCondition(Map map,RowBounds rowBounds){
+        List<FictionBaseEntity> list = sessionContext.selectList(this.getClass().getName()+".selectByCondition",map,rowBounds);
         return list;
     }
 
-    public List<FictionSearchResp> selectFullByCondition(Map map){
-        List<FictionSearchResp> list = sessionContext.selectList(this.getClass().getName()+".selectFullByCondition",map);
+    public List<FictionSearchResp> selectFullByCondition(Map map,RowBounds rowBounds){
+        List<FictionSearchResp> list = sessionContext.selectList(this.getClass().getName()+".selectFullByCondition",map,rowBounds);
         return list;
     }
 

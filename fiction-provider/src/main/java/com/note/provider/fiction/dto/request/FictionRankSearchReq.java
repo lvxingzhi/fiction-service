@@ -1,5 +1,7 @@
 package com.note.provider.fiction.dto.request;
 
+import com.note.base.dto.PageDto;
+
 /**
  * <p>TODO </p>
  * <p>
@@ -14,7 +16,7 @@ package com.note.provider.fiction.dto.request;
  * @date 2017/2/28
  * @since 1.0
  */
-public class FictionRankSearchReq {
+public class FictionRankSearchReq extends PageDto {
 
     /**
      * 排名类型

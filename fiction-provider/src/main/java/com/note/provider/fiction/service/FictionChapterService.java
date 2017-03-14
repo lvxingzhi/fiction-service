@@ -5,6 +5,7 @@ import com.note.provider.fiction.dto.request.FictionChapterInfoReq;
 import com.note.provider.fiction.dto.request.FictionChapterReq;
 import com.note.provider.fiction.dto.response.FictionChapterInfoResp;
 import com.note.provider.fiction.dto.response.FictionChapterResp;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,7 +25,8 @@ public class FictionChapterService {
     public List<FictionChapterResp> searchByCondition(FictionChapterReq fictionChapterReq) throws SQLException {
         HashMap<String,Object> map = new HashMap<String, Object>();
         map.put("searchContent",fictionChapterReq);
-        return fictionChapterDao.selectByCondition(map);
+        RowBounds rowBounds = new RowBounds(fictionChapterReq.getOffset(),fictionChapterReq.getLimit());
+        return fictionChapterDao.selectByCondition(map,rowBounds);
     }
 
     public FictionChapterInfoResp findChapterInfo(FictionChapterInfoReq fictionChapterInfoReq) throws SQLException {

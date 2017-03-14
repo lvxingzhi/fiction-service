@@ -3,6 +3,7 @@ package com.note.provider.fiction.service;
 import com.note.provider.fiction.dao.FictionRankDao;
 import com.note.provider.fiction.dto.request.FictionRankSearchReq;
 import com.note.provider.fiction.dto.response.FictionRankSearchResp;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -32,7 +33,8 @@ public class FictionRankService {
     public List<FictionRankSearchResp> searchByCondition(FictionRankSearchReq fictionRankSearchReq){
         HashMap<String,Object> map = new HashMap<String, Object>();
         map.put("searchContent",fictionRankSearchReq);
-        return fictionRankDao.selectByCondition(map);
+        RowBounds rowBounds = new RowBounds(fictionRankSearchReq.getOffset(),fictionRankSearchReq.getLimit());
+        return fictionRankDao.selectByCondition(map,rowBounds);
     }
 
 }

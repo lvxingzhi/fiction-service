@@ -3,6 +3,7 @@ package com.note.provider.fiction.dao;
 import com.note.base.dao.BaseDao;
 import com.note.base.dao.SessionContext;
 import com.note.provider.fiction.dto.response.FictionRankSearchResp;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -20,8 +21,8 @@ public class FictionRankDao  extends BaseDao {
         return sessionContext;
     }
 
-    public List<FictionRankSearchResp> selectByCondition(Map map){
-        List<FictionRankSearchResp> list = sessionContext.selectList(this.getClass().getName()+".selectByCondition",map);
+    public List<FictionRankSearchResp> selectByCondition(Map map,RowBounds rowBounds){
+        List<FictionRankSearchResp> list = sessionContext.selectList(this.getClass().getName()+".selectByCondition",map,rowBounds);
         return list;
     }
 
