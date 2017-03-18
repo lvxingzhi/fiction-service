@@ -33,7 +33,7 @@ public class PageDto {
         if(MIN == page){
             return MIN;
         }else{
-            return (page-1)*size+1;
+            return (page-1)*size;
         }
 
     }
