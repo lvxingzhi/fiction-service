@@ -12,6 +12,7 @@
     <dubbo:registry address="multicast://224.5.6.7:1234"/>
     <dubbo:protocol name="dubbo" port="20880"/>
     <dubbo:provider timeout="3000"/>
+
     <dubbo:service interface="com.note.provider.fiction.api.FictionApiService"
                    ref="fiction.service.fictionServiceProxy">
         <dubbo:method name="search" retries="3"/>
@@ -22,6 +23,13 @@
         <dubbo:method name="findChapterInfo" retries="3"/>
         <dubbo:method name="findNewList" retries="3"/>
     </dubbo:service>
+    <dubbo:service interface="com.note.provider.fiction.api.UserApiService"
+                   ref="fiction.service.userServiceProxy">
+        <dubbo:method name="add" retries="0"/>
+        <dubbo:method name="find" retries="3"/>
+    </dubbo:service>
+
+
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>

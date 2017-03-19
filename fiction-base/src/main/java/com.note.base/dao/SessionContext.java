@@ -42,5 +42,9 @@ public class SessionContext extends SqlSessionDaoSupport {
         return this.getSqlSession().selectOne(name,object);
     }
 
+    public <E> int insert(String name,E E){
+        return this.getSqlSession().insert(name,E);
+    }
+
 
 }

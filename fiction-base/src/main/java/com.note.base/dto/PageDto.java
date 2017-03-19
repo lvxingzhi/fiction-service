@@ -31,7 +31,7 @@ public class PageDto {
 
     public int getOffset() {
         if(MIN == page){
-            return MIN;
+            return 0;
         }else{
             return (page-1)*size;
         }
