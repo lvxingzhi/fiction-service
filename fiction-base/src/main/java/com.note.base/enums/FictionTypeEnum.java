@@ -16,20 +16,22 @@ import com.note.base.utils.ObjectUtil;
  * @date 2017/3/21
  * @since 1.0
  */
-public enum ChapterTypeEnum {
+public enum FictionTypeEnum {
 
-    NORMAL(1,"普通章节"),
-    VIP(2,"VIP章节");
+    OUTSIDE_NORMAL("OUTSIDE_NORMAL","网络作品"),
+    OUTSIDE_VIP("OUTSIDE_VIP","网络VIP"),
+    ORIGINAL_NORMAL("ORIGINAL_NORMAL","原创作品"),
+    ORIGINAL_VIP("ORIGINAL_VIP","原创VIP");
 
-    private int type;
+    private String type;
     private String desc;
 
-    ChapterTypeEnum(int type,String desc){
+    FictionTypeEnum(String type,String desc){
         this.type=type;
         this.desc=desc;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
@@ -37,15 +39,16 @@ public enum ChapterTypeEnum {
         return desc;
     }
 
-    public ChapterTypeEnum getByType(int type){
+    public FictionTypeEnum getByType(String type){
         if(ObjectUtil.isNull(type)){
             return null;
         }
-        for (ChapterTypeEnum chapterTypeEnum : ChapterTypeEnum.values()) {
-            if (chapterTypeEnum.getType() == type) {
-                return chapterTypeEnum;
+        for (FictionTypeEnum fictionTypeEnum : FictionTypeEnum.values()) {
+            if (fictionTypeEnum.getType() == type) {
+                return fictionTypeEnum;
             }
         }
         return null;
     }
+
 }

@@ -16,15 +16,15 @@ import com.note.base.utils.ObjectUtil;
  * @date 2017/3/21
  * @since 1.0
  */
-public enum ChapterTypeEnum {
+public enum DeleteEnum {
 
-    NORMAL(1,"普通章节"),
-    VIP(2,"VIP章节");
+    IS_DELETE(1,"删除"),
+    NOT_DELETE(0,"未删除");
 
     private int type;
     private String desc;
 
-    ChapterTypeEnum(int type,String desc){
+    DeleteEnum(int type,String desc){
         this.type=type;
         this.desc=desc;
     }
@@ -37,15 +37,16 @@ public enum ChapterTypeEnum {
         return desc;
     }
 
-    public ChapterTypeEnum getByType(int type){
+    public DeleteEnum getByType(int type){
         if(ObjectUtil.isNull(type)){
             return null;
         }
-        for (ChapterTypeEnum chapterTypeEnum : ChapterTypeEnum.values()) {
-            if (chapterTypeEnum.getType() == type) {
-                return chapterTypeEnum;
+        for (DeleteEnum deleteEnum : DeleteEnum.values()) {
+            if (deleteEnum.getType() == type) {
+                return deleteEnum;
             }
         }
         return null;
     }
+
 }
