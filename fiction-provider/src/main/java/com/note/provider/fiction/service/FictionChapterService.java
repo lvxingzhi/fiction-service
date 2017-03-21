@@ -1,6 +1,10 @@
 package com.note.provider.fiction.service;
 
+import com.note.base.utils.ObjectUtil;
+import com.note.entity.fiction.entity.FictionChapterEntity;
+import com.note.entity.fiction.entity.FictionChapterExtentionEntity;
 import com.note.provider.fiction.dao.FictionChapterDao;
+import com.note.provider.fiction.dao.FictionChapterExtentionDao;
 import com.note.provider.fiction.dto.request.FictionChapterInfoReq;
 import com.note.provider.fiction.dto.request.FictionChapterReq;
 import com.note.provider.fiction.dto.response.FictionChapterInfoResp;
@@ -22,6 +26,9 @@ public class FictionChapterService {
     @Resource(name ="fiction.service.fictionChapterDao")
     private FictionChapterDao fictionChapterDao;
 
+    @Resource(name ="fiction.service.fictionChapterExtentionDao")
+    private FictionChapterExtentionDao fictionChapterExtentionDao;
+
     public List<FictionChapterResp> searchByCondition(FictionChapterReq fictionChapterReq) throws SQLException {
         HashMap<String,Object> map = new HashMap<String, Object>();
         map.put("searchContent",fictionChapterReq);
@@ -33,6 +40,18 @@ public class FictionChapterService {
         HashMap<String,Object> map = new HashMap<String, Object>();
         map.put("searchContent",fictionChapterInfoReq);
         return fictionChapterDao.findOneByLogicCode(map);
+    }
+
+    public int add(FictionChapterEntity fictionChapterEntity, FictionChapterExtentionEntity fictionChapterExtentionEntity) throws Exception {
+        if(ObjectUtil.isNull(fictionChapterEntity)){
+            return 0;
+        }
+        int num1 = fictionChapterDao.add(fictionChapterEntity);
+        int num2 = fictionChapterExtentionDao.add(fictionChapterExtentionEntity);
+        if(num1!=1||num2!=1){
+            throw new Exception("保存章节失败");
+        }
+        return 1;
     }
 
 

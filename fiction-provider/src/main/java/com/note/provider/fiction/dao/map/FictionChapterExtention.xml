@@ -15,7 +15,7 @@
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
     <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode" />
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
-    <result column="chapter_content" jdbcType="LONGVARBINARY" property="chapterContent" />
+    <result column="chapter_content" jdbcType="TEXT" property="chapterContent" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--

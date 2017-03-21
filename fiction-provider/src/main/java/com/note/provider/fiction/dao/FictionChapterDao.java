@@ -2,6 +2,7 @@ package com.note.provider.fiction.dao;
 
 import com.note.base.dao.BaseDao;
 import com.note.base.dao.SessionContext;
+import com.note.entity.fiction.entity.FictionChapterEntity;
 import com.note.provider.fiction.dto.response.FictionChapterInfoResp;
 import com.note.provider.fiction.dto.response.FictionChapterResp;
 import org.apache.ibatis.session.RowBounds;
@@ -20,6 +21,10 @@ public class FictionChapterDao extends BaseDao {
     @Override
     public SessionContext getSessionContext() {
         return sessionContext;
+    }
+
+    public int add(FictionChapterEntity fictionChapterEntity){
+        return sessionContext.insert(this.getClass().getName()+".insert",fictionChapterEntity);
     }
 
     public List<FictionChapterResp> selectByCondition(Map map,RowBounds rowBounds){

@@ -82,7 +82,7 @@ public class FictionChapterExtentionEntity {
      *
      * @mbg.generated Sat Feb 25 22:52:36 CST 2017
      */
-    private byte[] chapterContent;
+    private String chapterContent;
 
     public Integer getCid() {
         return cid;
@@ -148,11 +148,11 @@ public class FictionChapterExtentionEntity {
         this.isDelete = isDelete;
     }
 
-    public byte[] getChapterContent() {
+    public String getChapterContent() {
         return chapterContent;
     }
 
-    public void setChapterContent(byte[] chapterContent) {
+    public void setChapterContent(String chapterContent) {
         this.chapterContent = chapterContent;
     }
 }

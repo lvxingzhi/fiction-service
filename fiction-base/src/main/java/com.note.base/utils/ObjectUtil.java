@@ -20,6 +20,11 @@ import java.util.Collection;
  */
 public class ObjectUtil {
 
+    /**
+     * null,"",空集合,返回false
+     * @param obj
+     * @return
+     */
     public static boolean notNull(Object obj){
         if(Objects.equal(obj,null)){
             return false;
@@ -37,6 +42,11 @@ public class ObjectUtil {
         return true;
     }
 
+    /**
+     * null,"",空集合,返回true
+     * @param obj
+     * @return
+     */
     public static boolean isNull(Object obj){
         if(Objects.equal(obj,null)){
             return true;
@@ -52,6 +62,15 @@ public class ObjectUtil {
             }
         }
         return false;
+    }
+
+    /**
+     * 字符串null转成""
+     * @param data
+     * @return
+     */
+    public static String dualStringNull(String data){
+        return isNull(data)?"":data;
     }
 
 

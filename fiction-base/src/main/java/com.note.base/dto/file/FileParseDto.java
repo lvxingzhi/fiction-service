@@ -20,5 +20,45 @@ public class FileParseDto {
     private String fileName; //文件名
     private String headTag; // 断章头标识
     private String footTag; // 断章尾标识
+    private String encode;// 文件编码格式
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getHeadTag() {
+        return headTag;
+    }
+
+    public void setHeadTag(String headTag) {
+        this.headTag = headTag;
+    }
+
+    public String getFootTag() {
+        return footTag;
+    }
+
+    public void setFootTag(String footTag) {
+        this.footTag = footTag;
+    }
+
+    public String getEncode() {
+        return encode;
+    }
+
+    public void setEncode(String encode) {
+        this.encode = encode;
+    }
 }
