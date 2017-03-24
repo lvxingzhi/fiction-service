@@ -15,7 +15,7 @@
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
     <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode" />
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
-    <result column="chapter_content" jdbcType="TEXT" property="chapterContent" />
+    <result column="chapter_content" jdbcType="VARCHAR" property="chapterContent" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
@@ -38,7 +38,7 @@
       )
     values (#{cid,jdbcType=INTEGER}, #{logicCode,jdbcType=VARCHAR}, #{chapterCode,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createUserCode,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
-      #{modifyUserCode,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}, #{chapterContent,jdbcType=LONGVARBINARY}
+      #{modifyUserCode,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}, #{chapterContent,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.note.entity.fiction.entity.FictionChapterExtentionEntity">
@@ -55,7 +55,7 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       modify_user_code = #{modifyUserCode,jdbcType=VARCHAR},
       is_delete = #{isDelete,jdbcType=INTEGER},
-      chapter_content = #{chapterContent,jdbcType=LONGVARBINARY}
+      chapter_content = #{chapterContent,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
