@@ -30,20 +30,21 @@
     where cid = #{cid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.note.entity.fiction.entity.FictionExtentionEntity">
-    insert into fiction_extention (cid, logic_code, fiction_code,
+    insert into fiction_extention (logic_code, fiction_code,
       full_desc, total_chapter, last_update_time, 
       level, fiction_views, last_chapter_name, 
       last_chapter_Code, create_time, modify_time, 
-      create_user_code, modify_user_code, is_delete
+      create_user_code, modify_user_code, is_delete,fiction_score,fiction_score_num,total_word
       )
-    values (#{cid,jdbcType=INTEGER}, #{logicCode,jdbcType=VARCHAR}, #{fictionCode,jdbcType=VARCHAR}, 
+    values  (#{logicCode,jdbcType=VARCHAR}, #{fictionCode,jdbcType=VARCHAR},
       #{fullDesc,jdbcType=VARCHAR}, #{totalChapter,jdbcType=INTEGER}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
-      #{level,jdbcType=INTEGER}, #{fictionViews,jdbcType=INTEGER}, #{lastChapterName,jdbcType=VARCHAR}, 
-      #{lastChapterId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{createUserCode,jdbcType=VARCHAR}, #{modifyUserCode,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}
+      #{level,jdbcType=INTEGER}, #{fictionViews,jdbcType=INTEGER}, #{lastChapterName,jdbcType=VARCHAR},
+      #{lastChapterCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP},
+      #{createUserCode,jdbcType=VARCHAR}, #{modifyUserCode,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER},
+      #{fictionScore},#{fictionScoreNum},#{totalWord}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.note.entity.fiction.entity.FictionExtentionEntity">
+  <update id="update" parameterType="com.note.entity.fiction.entity.FictionExtentionEntity">
     update fiction_extention
     set logic_code = #{logicCode,jdbcType=VARCHAR},
       fiction_code = #{fictionCode,jdbcType=VARCHAR},
@@ -53,25 +54,59 @@
       level = #{level,jdbcType=INTEGER},
       fiction_views = #{fictionViews,jdbcType=INTEGER},
       last_chapter_name = #{lastChapterName,jdbcType=VARCHAR},
-      last_chapter_code = #{lastChapterId,jdbcType=VARCHAR},
+      last_chapter_code = #{lastChapterCode,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       create_user_code = #{createUserCode,jdbcType=VARCHAR},
       modify_user_code = #{modifyUserCode,jdbcType=VARCHAR},
-      is_delete = #{isDelete,jdbcType=INTEGER}
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      fiction_score = #{fictionScore},
+      fiction_score_num = #{fictionScoreNum},
+      total_word = #{totalWord}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <update id="updateStatistics" parameterType="com.note.entity.fiction.entity.FictionExtentionEntity">
+    update fiction_extention
+    <set>
+      <if test="fictionViews!=null">
+        fiction_views = #{fictionViews,jdbcType=INTEGER},
+      </if>
+      <if test="lastChapterName!=null">
+        last_chapter_name = #{lastChapterName,jdbcType=INTEGER},
+      </if>
+      <if test="lastChapterCode!=null">
+        last_chapter_code = #{lastChapterCode,jdbcType=INTEGER},
+      </if>
+      <if test="modifyTime!=null">
+        modify_time = #{modifyTime,jdbcType=INTEGER},
+      </if>
+      <if test="modifyUserCode!=null">
+        modify_user_code = #{modifyUserCode,jdbcType=INTEGER},
+      </if>
+      <if test="fictionScore!=null">
+        fiction_score = #{fictionScore,jdbcType=INTEGER},
+      </if>
+      <if test="fictionScoreNum!=null">
+        fiction_score_num = #{fictionScoreNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalWord!=null">
+        total_word = #{totalWord,jdbcType=INTEGER},
+      </if>
+    </set>
+    where fiction_code = #{fictionCode,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByFictionCode" parameterType="java.lang.String" resultMap="BaseResultMap">
     select cid, logic_code, fiction_code, full_desc, total_chapter, last_update_time,
-    level, fiction_views, last_chapter_name, last_chapter_code, create_time, modify_time, 
+    level, fiction_views, last_chapter_name, last_chapter_code, create_time, modify_time, fiction_score,fiction_score_num,total_word,
     create_user_code, modify_user_code, is_delete
     from fiction_extention
-    where cid = #{cid,jdbcType=INTEGER}
+    where fiction_code = #{fictionCode,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select cid, logic_code, fiction_code, full_desc, total_chapter, last_update_time, fiction_score,
-    level, fiction_views, last_chapter_name, last_chapter_code, create_time, modify_time, 
+    fiction_score_num,total_word,level, fiction_views, last_chapter_name, last_chapter_code, create_time, modify_time,
     create_user_code, modify_user_code, is_delete
     from fiction_extention
   </select>
+
 </mapper>

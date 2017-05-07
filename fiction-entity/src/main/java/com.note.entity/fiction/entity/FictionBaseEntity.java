@@ -22,6 +22,7 @@ public class FictionBaseEntity {
     private Date modifyTime;
     private String createUserCode;
     private String modifyUserCode;
+    private Integer isDelete;
 
     public String getCid() {
         return cid;
@@ -142,5 +143,13 @@ public class FictionBaseEntity {
 
     public void setFictionStatus(Integer fictionStatus) {
         this.fictionStatus = fictionStatus;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 }

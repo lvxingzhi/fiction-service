@@ -16,27 +16,17 @@ import com.note.base.utils.ObjectUtil;
  * @date 2017/3/21
  * @since 1.0
  */
-public enum FictionTypeEnum {
+public enum FictionLevelEnum {
 
-    XUANHUAN("1","玄幻"),
-    QIHUAN("2","奇幻"),
-    WUXIA("3","武侠"),
-    XIANXIA("4","仙侠"),
-    DUSHI("5","都市"),
-    ZHICHANG("6","职场"),
-    JUNSHI("7","军事"),
-    LISHI("8","历史"),
-    YOUXI("9","游戏"),
-    TIYU("10","体育"),
-    KEHUAN("11","科幻"),
-    LINGYI("12","灵异"),
-    ERCIYUAN("13","二次元");
-
+    OUTSIDE_NORMAL("OUTSIDE_NORMAL","网络作品"),
+    OUTSIDE_VIP("OUTSIDE_VIP","网络VIP"),
+    ORIGINAL_NORMAL("ORIGINAL_NORMAL","原创作品"),
+    ORIGINAL_VIP("ORIGINAL_VIP","原创VIP");
 
     private String type;
     private String desc;
 
-    FictionTypeEnum(String type,String desc){
+    FictionLevelEnum(String type, String desc){
         this.type=type;
         this.desc=desc;
     }
@@ -49,13 +39,13 @@ public enum FictionTypeEnum {
         return desc;
     }
 
-    public static FictionTypeEnum getByType(String type){
+    public static FictionLevelEnum getByType(String type){
         if(ObjectUtil.isNull(type)){
             return null;
         }
-        for (FictionTypeEnum fictionTypeEnum : FictionTypeEnum.values()) {
-            if (fictionTypeEnum.getType().equals(type)) {
-                return fictionTypeEnum;
+        for (FictionLevelEnum fictionLevelEnum : FictionLevelEnum.values()) {
+            if (fictionLevelEnum.getType().equals(type)) {
+                return fictionLevelEnum;
             }
         }
         return null;

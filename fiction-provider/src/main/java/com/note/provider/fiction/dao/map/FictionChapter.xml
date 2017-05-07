@@ -5,7 +5,7 @@
         <id column="cid" jdbcType="INTEGER" property="cid"/>
         <result column="logic_code" jdbcType="VARCHAR" property="logicCode"/>
         <result column="fiction_code" jdbcType="VARCHAR" property="fictionCode"/>
-        <result column="chapter_sort" jdbcType="VARCHAR" property="chapterSort"/>
+        <result column="chapter_sort" jdbcType="INTEGER" property="chapterSort"/>
         <result column="chapter_name" jdbcType="VARCHAR" property="chapterName"/>
         <result column="chapter_type" jdbcType="INTEGER" property="chapterType"/>
         <result column="chapter_views" jdbcType="INTEGER" property="chapterViews"/>
@@ -21,7 +21,7 @@
         <id column="cid" jdbcType="INTEGER" property="cid"/>
         <result column="logic_code" jdbcType="VARCHAR" property="logicCode"/>
         <result column="fiction_code" jdbcType="VARCHAR" property="fictionCode"/>
-        <result column="chapter_sort" jdbcType="VARCHAR" property="chapterSort"/>
+        <result column="chapter_sort" jdbcType="INTEGER" property="chapterSort"/>
         <result column="chapter_name" jdbcType="VARCHAR" property="chapterName"/>
         <result column="chapter_type" jdbcType="INTEGER" property="chapterType"/>
         <result column="chapter_views" jdbcType="INTEGER" property="chapterViews"/>
@@ -31,6 +31,8 @@
         <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode"/>
         <result column="modify_user_code" jdbcType="VARCHAR" property="modifyUserCode"/>
         <result column="chapter_content" jdbcType="LONGVARBINARY" property="chapterContent"/>
+        <result column="previous_code" jdbcType="VARCHAR" property="previousCode" />
+        <result column="next_code" jdbcType="VARCHAR" property="nextCode" />
     </resultMap>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -54,7 +56,7 @@
         modify_time, create_user_code, modify_user_code,
         is_delete)
         values (#{cid,jdbcType=INTEGER}, #{logicCode,jdbcType=VARCHAR}, #{fictionCode,jdbcType=VARCHAR},
-        #{chapterSort,jdbcType=VARCHAR}, #{chapterName,jdbcType=VARCHAR}, #{chapterType,jdbcType=INTEGER},
+        #{chapterSort,jdbcType=INTEGER}, #{chapterName,jdbcType=VARCHAR}, #{chapterType,jdbcType=INTEGER},
         #{chapterViews,jdbcType=INTEGER}, #{chapterWordCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
         #{modifyTime,jdbcType=TIMESTAMP}, #{createUserCode,jdbcType=VARCHAR}, #{modifyUserCode,jdbcType=VARCHAR},
         #{isDelete,jdbcType=INTEGER})
@@ -68,7 +70,7 @@
         update fiction_chapter
         set logic_code = #{logicCode,jdbcType=VARCHAR},
         fiction_code = #{fictionCode,jdbcType=VARCHAR},
-        chapter_sort = #{chapterSort,jdbcType=VARCHAR},
+        chapter_sort = #{chapterSort,jdbcType=INTEGER},
         chapter_name = #{chapterName,jdbcType=VARCHAR},
         chapter_type = #{chapterType,jdbcType=INTEGER},
         chapter_views = #{chapterViews,jdbcType=INTEGER},
@@ -107,11 +109,27 @@
         select fc.cid, fc.logic_code, fc.fiction_code, fc.chapter_sort, fc.chapter_name, fc.chapter_type,
         fc.chapter_views,
         fc.chapter_word_count, fc.create_time, fc.modify_time, fc.create_user_code, fc.modify_user_code,
-        fce.chapter_content
+        fce.chapter_content,fce.previous_code,fce.next_code
         from fiction_chapter fc
         left join fiction_chapter_extention fce on fc.logic_code=fce.chapter_code
         <where>
              fc.logic_code=#{searchContent.chapterCode,jdbcType=VARCHAR}
+        </where>
+    </select>
+    <select id="findByCondition" resultMap="BaseResultMap" parameterType="com.note.entity.fiction.entity.FictionChapterEntity">
+        select fc.cid, fc.logic_code, fc.fiction_code, fc.chapter_sort, fc.chapter_name, fc.chapter_type,
+        fc.chapter_views,
+        fc.chapter_word_count, fc.create_time, fc.modify_time, fc.create_user_code, fc.modify_user_code,
+        fce.chapter_content,fce.previous_code,fce.next_code
+        from fiction_chapter fc
+        left join fiction_chapter_extention fce on fc.logic_code=fce.chapter_code
+        <where>
+            <if test="chapterSort!=null">
+                AND fc.chapter_sort = #{chapterSort}
+            </if>
+            <if test="fictionCode!=null">
+                AND fc.fiction_code = #{fictionCode}
+            </if>
         </where>
     </select>
 

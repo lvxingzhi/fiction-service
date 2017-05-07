@@ -16,20 +16,20 @@ import com.note.base.utils.ObjectUtil;
  * @date 2017/3/21
  * @since 1.0
  */
-public enum ChapterTypeEnum {
+public enum UserLevelEnum {
 
-    NORMAL(1,"普通章节"),
-    VIP(2,"VIP章节");
+    NORMAL(1,"普通"),
+    VIP(2,"VIP");
 
-    private int type;
+    private Integer type;
     private String desc;
 
-    ChapterTypeEnum(int type,String desc){
+    UserLevelEnum(Integer type, String desc){
         this.type=type;
         this.desc=desc;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
@@ -37,15 +37,16 @@ public enum ChapterTypeEnum {
         return desc;
     }
 
-    public static ChapterTypeEnum getByType(int type){
+    public static UserLevelEnum getByType(Integer type){
         if(ObjectUtil.isNull(type)){
             return null;
         }
-        for (ChapterTypeEnum chapterTypeEnum : ChapterTypeEnum.values()) {
-            if (chapterTypeEnum.getType() == type) {
-                return chapterTypeEnum;
+        for (UserLevelEnum userLevelEnum : UserLevelEnum.values()) {
+            if (userLevelEnum.getType().equals(type)) {
+                return userLevelEnum;
             }
         }
         return null;
     }
+
 }

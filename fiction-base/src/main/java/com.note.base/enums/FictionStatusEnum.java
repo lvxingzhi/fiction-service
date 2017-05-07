@@ -37,7 +37,7 @@ public enum FictionStatusEnum {
         return desc;
     }
 
-    public FictionStatusEnum getByType(int type){
+    public static FictionStatusEnum getByType(int type){
         if(ObjectUtil.isNull(type)){
             return null;
         }

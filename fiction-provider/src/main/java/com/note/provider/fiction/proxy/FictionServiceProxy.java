@@ -3,11 +3,13 @@ package com.note.provider.fiction.proxy;
 import com.google.gson.reflect.TypeToken;
 import com.note.base.utils.JsonUtil;
 import com.note.entity.fiction.entity.FictionBaseEntity;
+import com.note.entity.fiction.entity.FictionExtentionEntity;
 import com.note.provider.fiction.api.FictionApiService;
 import com.note.provider.fiction.dto.request.*;
 import com.note.provider.fiction.dto.response.*;
 import com.note.provider.fiction.service.FictionBaseService;
 import com.note.provider.fiction.service.FictionChapterService;
+import com.note.provider.fiction.service.FictionExtentionService;
 import com.note.provider.fiction.service.FictionRankService;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,9 @@ public class FictionServiceProxy implements FictionApiService {
 
     @Resource(name = "fiction.service.fictionChapterService")
     private FictionChapterService fictionChapterService;
+
+    @Resource(name = "fiction.service.fictionExtentionService")
+    private FictionExtentionService fictionExtentionService;
 
     public String search(String json) throws SQLException, IOException {
         List<FictionBaseEntity> list = fictionBaseService.selectByCondition(json);
@@ -54,6 +59,10 @@ public class FictionServiceProxy implements FictionApiService {
         FictionFindOneReq fictionFindOneReq = JsonUtil.fromJson(json, new TypeToken<FictionFindOneReq>() {
         }.getType());
         FictionFindOneResp result = fictionBaseService.findOneByCondition(fictionFindOneReq);
+        // 增加浏览量
+        FictionExtentionEntity fictionExtentionEntity = fictionExtentionService.findByFictionCode(result.getLogicCode());
+        fictionExtentionEntity.setFictionViews(fictionExtentionEntity.getFictionViews()+1);
+        fictionExtentionService.updateStatistics(fictionExtentionEntity);
         return JsonUtil.toJson(result);
     }
 
@@ -76,6 +85,5 @@ public class FictionServiceProxy implements FictionApiService {
         List<FictionBaseEntity> list = fictionBaseService.selectByCondition(json);
         return JsonUtil.toJson(list);
     }
-
 
 }

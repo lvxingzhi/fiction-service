@@ -17,6 +17,7 @@
         <result column="create_user_code" property="createUserCode"/>
         <result column="modify_time" property="modifyTime"/>
         <result column="modify_user_code" property="modifyUserCode"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
     </resultMap>
 
     <resultMap id="fullResult" type="com.note.provider.fiction.dto.response.FictionSearchResp">
@@ -129,6 +130,16 @@
             and fb.is_delete = 0
         </where>
     </select>
+
+    <insert id="insert" parameterType="com.note.entity.fiction.entity.FictionBaseEntity" >
+        insert into fiction_base(
+        logic_code,title,short_desc,fiction_status,cover_photo,author_name,
+        type_code,type_name,create_time,create_user_code,modify_time,modify_user_code,is_delete
+        ) values(
+        #{logicCode},#{title},#{shortDesc},#{fictionStatus},#{coverPhoto},#{authorName},#{typeCode}
+        ,#{typeName},#{createTime},#{createUserCode},#{modifyTime},#{modifyUserCode},#{isDelete}
+        )
+    </insert>
 
 
 </mapper>

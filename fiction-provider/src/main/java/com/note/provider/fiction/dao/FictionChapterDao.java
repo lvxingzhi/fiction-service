@@ -2,6 +2,7 @@ package com.note.provider.fiction.dao;
 
 import com.note.base.dao.BaseDao;
 import com.note.base.dao.SessionContext;
+import com.note.base.dto.PageDto;
 import com.note.entity.fiction.entity.FictionChapterEntity;
 import com.note.provider.fiction.dto.response.FictionChapterInfoResp;
 import com.note.provider.fiction.dto.response.FictionChapterResp;
@@ -37,6 +38,10 @@ public class FictionChapterDao extends BaseDao {
         return result;
     }
 
-
+    public List<FictionChapterEntity> findByCondition(FictionChapterEntity fictionChapterEntity){
+        PageDto pageDto = new PageDto();
+        RowBounds rowBounds = new RowBounds(pageDto.getOffset(),pageDto.getLimit());
+        return sessionContext.selectList(this.getClass().getName()+".findByCondition",fictionChapterEntity,rowBounds);
+    }
 
 }

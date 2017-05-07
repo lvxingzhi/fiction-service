@@ -22,4 +22,8 @@ public class FictionChapterExtentionDao extends BaseDao {
         return sessionContext.insert(this.getClass().getName()+".insert",fictionChapterExtentionEntity);
     }
 
+    public int updatePreAndNext(FictionChapterExtentionEntity fictionChapterExtentionEntity){
+        return sessionContext.update(this.getClass().getName()+".updatePreAndNext",fictionChapterExtentionEntity);
+    }
+
 }

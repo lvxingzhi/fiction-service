@@ -72,4 +72,5 @@ public interface FictionApiService {
      */
     String findNewList(String json) throws SQLException, IOException;
 
+
 }

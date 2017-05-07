@@ -28,12 +28,17 @@
         <dubbo:method name="add" retries="0"/>
         <dubbo:method name="find" retries="3"/>
     </dubbo:service>
+    <dubbo:service interface="com.note.provider.fiction.api.AdminApiService"
+                   ref="fiction.service.adminServiceProxy">
+        <dubbo:method name="createFiction" retries="0"/>
+        <dubbo:method name="createFictionChapter" retries="0"/>
+    </dubbo:service>
 
 
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/fiction?useSSL=true"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/fiction?useSSL=true&amp;useUnicode=true&amp;characterEncoding=GBK"/>
         <property name="username" value="note"/>
         <property name="password" value="note"/>
         <property name="initialSize" value="2"/>

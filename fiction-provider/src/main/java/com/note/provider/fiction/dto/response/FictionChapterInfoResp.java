@@ -24,7 +24,7 @@ public class FictionChapterInfoResp {
 
     private String fictionCode;
 
-    private String chapterSort;
+    private Integer chapterSort;
 
     private String chapterName;
 
@@ -45,6 +45,15 @@ public class FictionChapterInfoResp {
     private byte[] chapterContent;
 
     private String chapterContentStr;
+
+    /**
+     * 上一章节
+     */
+    private String previousCode;
+    /**
+     * 下一章节
+     */
+    private String nextCode;
 
     public Integer getCid() {
         return cid;
@@ -70,11 +79,11 @@ public class FictionChapterInfoResp {
         this.fictionCode = fictionCode;
     }
 
-    public String getChapterSort() {
+    public Integer getChapterSort() {
         return chapterSort;
     }
 
-    public void setChapterSort(String chapterSort) {
+    public void setChapterSort(Integer chapterSort) {
         this.chapterSort = chapterSort;
     }
 
@@ -156,5 +165,21 @@ public class FictionChapterInfoResp {
 
     public void setChapterContentStr(String chapterContentStr) {
         this.chapterContentStr = chapterContentStr;
+    }
+
+    public String getPreviousCode() {
+        return previousCode;
+    }
+
+    public void setPreviousCode(String previousCode) {
+        this.previousCode = previousCode;
+    }
+
+    public String getNextCode() {
+        return nextCode;
+    }
+
+    public void setNextCode(String nextCode) {
+        this.nextCode = nextCode;
     }
 }

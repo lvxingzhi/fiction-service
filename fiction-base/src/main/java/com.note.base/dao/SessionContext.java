@@ -46,5 +46,9 @@ public class SessionContext extends SqlSessionDaoSupport {
         return this.getSqlSession().insert(name,E);
     }
 
+    public <E> int update(String name,E E){
+        return this.getSqlSession().update(name,E);
+    }
+
 
 }

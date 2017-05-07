@@ -54,6 +54,10 @@ public class FictionChapterService {
         return 1;
     }
 
+    public List<FictionChapterEntity> findByCondition(FictionChapterEntity fictionChapterEntity){
+        return fictionChapterDao.findByCondition(fictionChapterEntity);
+    }
+
 
 
 }

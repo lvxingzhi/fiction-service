@@ -41,4 +41,8 @@ public class FictionBaseDao extends BaseDao {
         return result;
     }
 
+    public int add(FictionBaseEntity entity){
+        return sessionContext.insert(this.getClass().getName()+".insert",entity);
+    }
+
 }

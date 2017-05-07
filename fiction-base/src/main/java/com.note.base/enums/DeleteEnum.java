@@ -37,7 +37,7 @@ public enum DeleteEnum {
         return desc;
     }
 
-    public DeleteEnum getByType(int type){
+    public static DeleteEnum getByType(int type){
         if(ObjectUtil.isNull(type)){
             return null;
         }

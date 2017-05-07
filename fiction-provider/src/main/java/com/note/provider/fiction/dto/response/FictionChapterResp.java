@@ -24,7 +24,7 @@ public class FictionChapterResp {
 
     private String fictionCode;
 
-    private String chapterSort;
+    private Integer chapterSort;
 
     private String chapterName;
 
@@ -66,11 +66,11 @@ public class FictionChapterResp {
         this.fictionCode = fictionCode;
     }
 
-    public String getChapterSort() {
+    public Integer getChapterSort() {
         return chapterSort;
     }
 
-    public void setChapterSort(String chapterSort) {
+    public void setChapterSort(Integer chapterSort) {
         this.chapterSort = chapterSort;
     }
 

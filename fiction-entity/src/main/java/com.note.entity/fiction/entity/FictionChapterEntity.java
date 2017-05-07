@@ -37,7 +37,7 @@ public class FictionChapterEntity {
      *
      * @mbg.generated Sat Feb 25 22:52:36 CST 2017
      */
-    private String chapterSort;
+    private Integer chapterSort;
 
     /**
      *
@@ -144,11 +144,11 @@ public class FictionChapterEntity {
         this.fictionCode = fictionCode;
     }
 
-    public String getChapterSort() {
+    public Integer getChapterSort() {
         return chapterSort;
     }
 
-    public void setChapterSort(String chapterSort) {
+    public void setChapterSort(Integer chapterSort) {
         this.chapterSort = chapterSort;
     }
 

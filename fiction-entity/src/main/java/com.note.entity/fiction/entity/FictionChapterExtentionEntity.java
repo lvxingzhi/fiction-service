@@ -84,6 +84,15 @@ public class FictionChapterExtentionEntity {
      */
     private String chapterContent;
 
+    /**
+     * 上一章节
+     */
+    private String previousCode;
+    /**
+     * 下一章节
+     */
+    private String nextCode;
+
     public Integer getCid() {
         return cid;
     }
@@ -154,5 +163,21 @@ public class FictionChapterExtentionEntity {
 
     public void setChapterContent(String chapterContent) {
         this.chapterContent = chapterContent;
+    }
+
+    public String getPreviousCode() {
+        return previousCode;
+    }
+
+    public void setPreviousCode(String previousCode) {
+        this.previousCode = previousCode;
+    }
+
+    public String getNextCode() {
+        return nextCode;
+    }
+
+    public void setNextCode(String nextCode) {
+        this.nextCode = nextCode;
     }
 }
