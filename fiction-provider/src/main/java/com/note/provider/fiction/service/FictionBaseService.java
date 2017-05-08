@@ -60,6 +60,12 @@ public class FictionBaseService {
         return fictionBaseDao.selectFullByCondition(map, rowBounds);
     }
 
+    public int selectFullCountByCondition(FictionSearchReq fictionSearchReq) throws SQLException {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("searchContent", fictionSearchReq);
+        return  fictionBaseDao.selectFullCountByCondition(map);
+    }
+
     public FictionFindOneResp findOneByCondition(FictionFindOneReq fictionFindOneReq) throws SQLException {
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("searchContent", fictionFindOneReq);

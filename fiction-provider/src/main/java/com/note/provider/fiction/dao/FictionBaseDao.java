@@ -36,6 +36,11 @@ public class FictionBaseDao extends BaseDao {
         return list;
     }
 
+    public int selectFullCountByCondition(Map map){
+        int count = sessionContext.selectOne(this.getClass().getName()+".selectFullCountByCondition",map);
+        return count;
+    }
+
     public FictionFindOneResp findOneByCondition(Map map){
         FictionFindOneResp result = sessionContext.selectOne(this.getClass().getName()+".selectOneByCondition",map);
         return result;

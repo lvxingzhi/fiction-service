@@ -117,6 +117,44 @@
         </choose>
     </select>
 
+    <select id="selectFullCountByCondition" parameterType="map" resultType="java.lang.Integer">
+        select count(1) from (
+        select
+        fb.cid,fb.logic_code,fb.title,fb.short_desc,fb.fiction_status,fb.cover_photo,fb.author_code,fb.author_name,
+        fb.type_code,fb.type_name,fb.create_time,fb.create_user_code,fext.full_desc,
+        fext.total_chapter,fext.last_update_time,fext.level,fext.total_word,fext.fiction_views,fext.fiction_score_num,fext.fiction_score,fext.last_chapter_name,fext.last_chapter_code
+        from fiction_base fb
+        left join fiction_extention fext on fb.logic_code=fext.fiction_code
+        <where>
+            1=1
+            <if test="searchContent.title!=null and searchContent.title!=''" >
+                and fb.title like concat(#{searchContent.title},'%')
+            </if>
+            <if test="searchContent.authorName!=null and searchContent.authorName!=''" >
+                and fb.author_name = #{authorName}
+            </if>
+            <if test="searchContent.authorCode!=null and searchContent.authorCode!=''" >
+                and fb.author_code = #{searchContent.authorCode}
+            </if>
+            <if test="searchContent.typeCode!=null and searchContent.typeCode!=''" >
+                and fb.type_code = #{searchContent.typeCode}
+            </if>
+            <if test="searchContent.fictionStatus!=null and searchContent.fictionStatus!=''" >
+                and fb.fiction_status = #{searchContent.fictionStatus}
+            </if>
+            and fb.is_delete = 0
+        </where>
+        <choose>
+            <when test="searchContent.orderBy!=null and searchContent.orderBy!=''" >
+                order by #{searchContent.orderBy} <if test="searchContent.orderByType!=null and searchContent.orderByType!='' and (searchContent.orderByType='desc' or searchContent.orderByType='asc')">#{searchContent.orderByType}</if>
+            </when>
+            <otherwise>
+                order by create_time desc
+            </otherwise>
+        </choose>
+        ) t
+    </select>
+
     <select id="selectOneByCondition" parameterType="map" resultMap="oneResult">
         select
         fb.cid,fb.logic_code,fb.title,fb.short_desc,fb.fiction_status,fb.cover_photo,fb.author_code,fb.author_name,

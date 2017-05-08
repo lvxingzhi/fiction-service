@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -45,7 +46,11 @@ public class FictionServiceProxy implements FictionApiService {
         FictionSearchReq fictionSearchReq = JsonUtil.fromJson(json, new TypeToken<FictionSearchReq>() {
         }.getType());
         List<FictionSearchResp> list = fictionBaseService.selectFullByCondition(fictionSearchReq);
-        return JsonUtil.toJson(list);
+        int count = fictionBaseService.selectFullCountByCondition(fictionSearchReq);
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("count",count);
+        result.put("list",list);
+        return JsonUtil.toJson(result);
     }
 
     public String findRankList(String json) throws SQLException, IOException {

@@ -84,10 +84,10 @@
     from fiction_rank fr
     left join fiction_base fb on fb.logic_code=fr.fiction_code
     <choose>
-      <when test="searchContent.rankType!=null and searchContent.rankType=1">
+      <when test="searchContent.rankType!=null and searchContent.rankType==1">
         order by fiction_views desc
       </when>
-      <when test="searchContent.rankType!=null and searchContent.rankType=2">
+      <when test="searchContent.rankType!=null and searchContent.rankType==2">
         order by fiction_score desc
       </when>
       <otherwise>
