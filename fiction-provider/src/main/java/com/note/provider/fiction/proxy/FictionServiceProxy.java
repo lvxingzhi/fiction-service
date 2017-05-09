@@ -48,7 +48,7 @@ public class FictionServiceProxy implements FictionApiService {
         List<FictionSearchResp> list = fictionBaseService.selectFullByCondition(fictionSearchReq);
         int count = fictionBaseService.selectFullCountByCondition(fictionSearchReq);
         HashMap<String,Object> result = new HashMap<>();
-        result.put("count",count);
+        result.put("count",count+"");
         result.put("list",list);
         return JsonUtil.toJson(result);
     }
