@@ -23,11 +23,12 @@ public class SystemUserService  {
     public int add(SystemUserReq systemUserReq) {
         SystemUserEntity systemUserEntity = new SystemUserEntity();
         systemUserEntity.setLogicCode(UUIDGenerator.uuid());
-        systemUserEntity.setLoginName(systemUserReq.getUserName());
+        systemUserEntity.setLoginName(systemUserReq.getLoginName());
         systemUserEntity.setLoginPassword(systemUserReq.getPassword());
         systemUserEntity.setEmail(systemUserReq.getEmail());
         systemUserEntity.setLevel(UserLevelEnum.NORMAL.getType());
         systemUserEntity.setType(UserTypeEnum.NORMAL.getType());
+        systemUserEntity.setScore(0);
         systemUserEntity.setName(systemUserReq.getName());
         systemUserEntity.setCreateTime(new Date());
         systemUserEntity.setModifyTime(systemUserEntity.getCreateTime());
@@ -35,6 +36,14 @@ public class SystemUserService  {
         systemUserEntity.setModifyUserCode("admin");
         systemUserEntity.setIsDelete(DeleteEnum.NOT_DELETE.getType());
         return systemUserDao.add(systemUserEntity);
+    }
+
+    public int update(SystemUserEntity systemUserEntity) {
+        return systemUserDao.update(systemUserEntity);
+    }
+
+    public int updateExt(SystemUserEntity systemUserEntity) {
+        return systemUserDao.updateExt(systemUserEntity);
     }
 
     public SystemUserEntity find(SystemUserLoginReq systemUserLoginReq) {

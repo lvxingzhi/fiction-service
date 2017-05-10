@@ -26,4 +26,25 @@ public interface UserApiService {
      */
     String find(String json) throws SQLException, IOException;
 
+    /**
+     * 修改基本信息
+     * @param json
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     */
+    String updateBaseInfo(String json) throws SQLException, IOException;
+
+    /**
+     * 修改扩展信息
+     * @param json
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     */
+    String updateExtensionInfo(String json) throws SQLException, IOException;
+
+
+
+
 }

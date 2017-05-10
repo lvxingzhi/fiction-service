@@ -23,6 +23,14 @@ public class SystemUserDao  extends BaseDao {
         return sessionContext.insert(this.getClass().getName()+".insert",systemUserEntity);
     }
 
+    public int update(SystemUserEntity systemUserEntity){
+        return sessionContext.update(this.getClass().getName()+".update",systemUserEntity);
+    }
+
+    public int updateExt(SystemUserEntity systemUserEntity){
+        return sessionContext.update(this.getClass().getName()+".updateExt",systemUserEntity);
+    }
+
     public SystemUserEntity selectOneByCondition(Map map){
         return sessionContext.selectOne(this.getClass().getName()+".selectByCondition",map);
     }
