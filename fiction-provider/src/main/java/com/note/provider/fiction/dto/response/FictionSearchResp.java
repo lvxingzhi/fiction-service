@@ -31,6 +31,10 @@ public class FictionSearchResp {
      */
     private String shortDesc;
     /**
+     * 截取的简单描述
+     */
+    private String subShortDesc;
+    /**
      * 封面
      */
     private String coverPhoto;
@@ -263,6 +267,16 @@ public class FictionSearchResp {
     }
 
     public void setTotalWord(Integer totalWord) {
+
         this.totalWord = totalWord;
     }
+
+    public String getSubShortDesc() {
+        return subShortDesc;
+    }
+
+    public void setSubShortDesc(String subShortDesc) {
+        this.subShortDesc = subShortDesc;
+    }
+
 }

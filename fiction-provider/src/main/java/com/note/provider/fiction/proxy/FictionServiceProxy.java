@@ -2,6 +2,7 @@ package com.note.provider.fiction.proxy;
 
 import com.google.gson.reflect.TypeToken;
 import com.note.base.utils.JsonUtil;
+import com.note.base.utils.ObjectUtil;
 import com.note.entity.fiction.entity.FictionBaseEntity;
 import com.note.entity.fiction.entity.FictionExtentionEntity;
 import com.note.provider.fiction.api.FictionApiService;
@@ -47,6 +48,19 @@ public class FictionServiceProxy implements FictionApiService {
         }.getType());
         List<FictionSearchResp> list = fictionBaseService.selectFullByCondition(fictionSearchReq);
         int count = fictionBaseService.selectFullCountByCondition(fictionSearchReq);
+        if(ObjectUtil.notNull(list)){
+            list.forEach(s->{
+                if(ObjectUtil.isNull(s.getShortDesc())){
+                    s.setSubShortDesc("");
+                }else{
+                    if(s.getShortDesc().length()>25){
+                        s.setSubShortDesc(s.getShortDesc().substring(0,23)+"……");
+                    }else{
+                        s.setSubShortDesc(s.getShortDesc());
+                    }
+                }
+            });
+        }
         HashMap<String,Object> result = new HashMap<>();
         result.put("count",count+"");
         result.put("list",list);
@@ -82,7 +96,6 @@ public class FictionServiceProxy implements FictionApiService {
         FictionChapterInfoReq fictionChapterInfoReq = JsonUtil.fromJson(json, new TypeToken<FictionChapterInfoReq>() {
         }.getType());
         FictionChapterInfoResp result = fictionChapterService.findChapterInfo(fictionChapterInfoReq);
-        result.setChapterContentStr(new String(result.getChapterContent(),"gbk"));
         return JsonUtil.toJson(result);
     }
 

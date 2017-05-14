@@ -42,9 +42,7 @@ public class FictionChapterInfoResp {
 
     private String modifyUserCode;
 
-    private byte[] chapterContent;
-
-    private String chapterContentStr;
+    private String chapterContent;
 
     /**
      * 上一章节
@@ -135,11 +133,11 @@ public class FictionChapterInfoResp {
         this.modifyTime = modifyTime;
     }
 
-    public byte[] getChapterContent() {
+    public String getChapterContent() {
         return chapterContent;
     }
 
-    public void setChapterContent(byte[] chapterContent) {
+    public void setChapterContent(String chapterContent) {
         this.chapterContent = chapterContent;
     }
 
@@ -157,14 +155,6 @@ public class FictionChapterInfoResp {
 
     public void setModifyUserCode(String modifyUserCode) {
         this.modifyUserCode = modifyUserCode;
-    }
-
-    public String getChapterContentStr() {
-        return chapterContentStr;
-    }
-
-    public void setChapterContentStr(String chapterContentStr) {
-        this.chapterContentStr = chapterContentStr;
     }
 
     public String getPreviousCode() {

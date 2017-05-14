@@ -211,6 +211,22 @@
                             <overwrite>true</overwrite>
                         </configuration>
                 </plugin>
+                <!--<plugin>-->
+                    <!--<groupId>org.apache.maven.plugins</groupId>-->
+                    <!--<artifactId>maven-jar-plugin</artifactId>-->
+                    <!--<configuration>-->
+                        <!--<archive>-->
+                            <!--<manifest>-->
+                                <!--<addClasspath>true</addClasspath>-->
+                            <!--</manifest>-->
+                            <!--<manifestEntries>-->
+                                <!--<Main-Class>-->
+                                    <!--com.note.provider.fiction.proxy.Main-->
+                                <!--</Main-Class>-->
+                            <!--</manifestEntries>-->
+                        <!--</archive>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
             </plugins>
         </pluginManagement>
         <resources>
