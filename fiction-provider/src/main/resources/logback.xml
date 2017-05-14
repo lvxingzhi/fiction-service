@@ -7,14 +7,13 @@
     </appender>
 
     <appender name="ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>H://log/all.log</file>
+        <file>/home/logs/all-dubbo.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
             <fileNamePattern>all.%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- keep 30 days' worth of history capped at 3GB total size -->
-            <maxFileSize>100MB</maxFileSize>
             <maxHistory>60</maxHistory>
-            <totalSizeCap>10GB</totalSizeCap>
+            <totalSizeCap>2GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
@@ -23,14 +22,13 @@
     </appender>
 
     <appender name="SYSTEM" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>H://log/system.log</file>
+        <file>/home/logs/system-web.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
             <fileNamePattern>system.%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- keep 30 days' worth of history capped at 3GB total size -->
-            <maxFileSize>100MB</maxFileSize>
             <maxHistory>60</maxHistory>
-            <totalSizeCap>10GB</totalSizeCap>
+            <totalSizeCap>2GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
@@ -38,7 +36,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.note" level="INFO" additivity="true">
+    <logger name="com.note" level="DEBUG" additivity="true">
         <appender-ref ref="SYSTEM"/>
     </logger>
 
@@ -49,7 +47,7 @@
 
 
     <root level="DEBUG">
-        <appender-ref ref="STDOUT"/>
-        <!--<appender-ref ref="ALL"/>-->
+        <!--<appender-ref ref="STDOUT"/>-->
+        <appender-ref ref="ALL"/>
     </root>
 </configuration>
