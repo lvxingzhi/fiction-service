@@ -42,7 +42,13 @@
         <property name="username" value="root"/>
         <property name="password" value="lvxingzhi"/>
         <property name="initialSize" value="10"/>
-        <property name="maxActive" value="50"/>
+        <property name="maxActive" value="150"/>
+        <property name="minIdle" value="5"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="removeAbandoned"  value="true"/>
+        <property name="removeAbandonedTimeout" value="10"/>
+        <property name="maxWait" value="1000"/>
+        <property name="validationQuery" value="SELECT NOW() FROM DUAL"/>
     </bean>
 
     <!--<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />-->
