@@ -54,7 +54,7 @@
         <property name= "timeBetweenEvictionRunsMillis" value="20000" /> <!--上边的时间设置-->
         <property name= "testOnBorrow" value="false" /><!--就是在进行borrowObject进行处理时，对拿到的connection进行validateObject校验-->
         <property name= "testOnReturn" value="false" /><!--就是在进行returnObject对返回的connection进行validateObject校验，个人觉得对数据库连接池的管理意义不大-->
-        <property name= "validationQuery" value="select sysdate from dual" /><!--代表检查的sql-->
+        <property name= "validationQuery" value="select 1 from dual" /><!--代表检查的sql-->
         <property name= "validationQueryTimeout" value="1" /><!--代表在执行检查时，通过statement设置，statement.setQueryTimeout(validationQueryTimeout)-->
         <property name= "numTestsPerEvictionRun"  value="30"/><!--代表每次检查链接的数量，建议设置和maxActive一样大，这样每次可以有效检查所有的链接.-->
     </bean>
