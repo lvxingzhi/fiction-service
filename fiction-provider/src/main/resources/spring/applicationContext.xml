@@ -11,7 +11,7 @@
     <dubbo:application name="fiction-service"/>
     <dubbo:registry address="multicast://224.5.6.7:1234"/>
     <dubbo:protocol name="dubbo" port="20880"/>
-    <dubbo:provider timeout="10000"/>
+    <dubbo:provider timeout="3000"/>
 
     <dubbo:service interface="com.note.provider.fiction.api.FictionApiService"
                    ref="fiction.service.fictionServiceProxy">
@@ -41,14 +41,22 @@
         <property name="url" value="jdbc:mysql://139.199.84.115:3306/fiction?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
         <property name="username" value="root"/>
         <property name="password" value="lvxingzhi"/>
-        <property name="initialSize" value="10"/>
-        <property name="maxActive" value="150"/>
-        <property name="minIdle" value="5"/>
-        <property name="logAbandoned" value="true"/>
-        <property name="removeAbandoned"  value="true"/>
-        <property name="removeAbandonedTimeout" value="10"/>
-        <property name="maxWait" value="1000"/>
-        <property name="validationQuery" value="SELECT NOW() FROM DUAL"/>
+        <property name="initialSize" value="1"/> <!--启动时,初始化连接数-->
+        <property name="maxActive" value="20"/><!--最大连接池连接数-->
+        <property name="maxIdle" value="10" /><!--最大空闲的连接数-->
+        <property name="minIdle" value="5" /><!--最小空闲连接数-->
+        <property name="maxWait" value="6000" /><!--没有连接时的等待时间-->
+
+        <property name="removeAbandoned" value="true"/><!--是否自动回收超时连接-->
+        <property name="removeAbandonedTimeout" value="180" /><!--超时时间-->
+
+        <property name= "testWhileIdle" value="true" /><!-- 定时对线程池中的链接进行validateObject校验-->
+        <property name= "timeBetweenEvictionRunsMillis" value="20000" /> <!--上边的时间设置-->
+        <property name= "testOnBorrow" value="false" /><!--就是在进行borrowObject进行处理时，对拿到的connection进行validateObject校验-->
+        <property name= "testOnReturn" value="false" /><!--就是在进行returnObject对返回的connection进行validateObject校验，个人觉得对数据库连接池的管理意义不大-->
+        <property name= "validationQuery" value="select sysdate from dual" /><!--代表检查的sql-->
+        <property name= "validationQueryTimeout" value="1" /><!--代表在执行检查时，通过statement设置，statement.setQueryTimeout(validationQueryTimeout)-->
+        <property name= "numTestsPerEvictionRun"  value="30"/><!--代表每次检查链接的数量，建议设置和maxActive一样大，这样每次可以有效检查所有的链接.-->
     </bean>
 
     <!--<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />-->
