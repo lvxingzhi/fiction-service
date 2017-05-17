@@ -13,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, SQLException {
         Logger logger = LoggerFactory.getLogger(Main.class);
+        logger.info("==============fiction-server开始启动");
         logger.trace("trace");
 //        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:spring/applicationContext.xml"});
 //        context.start();
