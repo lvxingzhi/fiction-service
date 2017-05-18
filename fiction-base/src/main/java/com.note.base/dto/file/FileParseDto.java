@@ -61,4 +61,15 @@ public class FileParseDto {
     public void setEncode(String encode) {
         this.encode = encode;
     }
+
+    @Override
+    public String toString() {
+        return "FileParseDto{" +
+                "path='" + path + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", headTag='" + headTag + '\'' +
+                ", footTag='" + footTag + '\'' +
+                ", encode='" + encode + '\'' +
+                '}';
+    }
 }

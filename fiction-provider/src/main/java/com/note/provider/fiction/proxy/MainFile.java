@@ -34,11 +34,13 @@ public class MainFile {
     public static void main(String[] args) throws IOException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:spring/applicationContext.xml"});
         context.start();
-        System.out.println("开始");
+        System.out.println("#########: 开始");
         FileParseDto fileParseDto = new FileParseDto();
         fileParseDto.setPath("F:/");
         fileParseDto.setFileName("新建文本文档.txt");
         fileParseDto.setEncode("UTF-8");
+        System.out.println("#########: "+fileParseDto.toString());
+
         Map<String,Object> resultMap = FileParseUtil.access(fileParseDto);
         BaseDto baseDto = (BaseDto) resultMap.get(FileParseUtil.BASE_DTO);
         List<ChapterDto> chapterDtoList = (List<ChapterDto>)resultMap.get(FileParseUtil.CHAPTER_DTO_LIST);
@@ -53,7 +55,7 @@ public class MainFile {
         fictionAddReq.setFullDesc(baseDto.getShortDesc());
         String fictionResult = adminApiService.createFiction(JsonUtil.toJson(fictionAddReq));
         FictionBaseEntity fictionBaseEntity = JsonUtil.fromJson(fictionResult, FictionBaseEntity.class);
-
+        System.out.println("#########: "+JsonUtil.toJson(fictionBaseEntity));
         chapterDtoList.forEach(s->{
             FictionChapterAddReq fictionChapterAddReq = new FictionChapterAddReq();
             fictionChapterAddReq.setFictionCode(fictionBaseEntity.getLogicCode());
@@ -62,8 +64,9 @@ public class MainFile {
             fictionChapterAddReq.setChapterType(1);// 1 free 2 not free
             fictionChapterAddReq.setChapterContent(s.getContent());
             adminApiService.createFictionChapter(JsonUtil.toJson(fictionChapterAddReq));
+            System.out.println("#########: "+fictionChapterAddReq.getChapterName());
         });
-        System.out.println("结束");
+        System.out.println("#########: 结束");
 
     }
 
