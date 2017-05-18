@@ -52,4 +52,14 @@ public class ChapterDto {
     public void setIndex(Integer index) {
         this.index = index;
     }
+
+    @Override
+    public String toString() {
+        return "ChapterDto{" +
+                "title='" + title + '\'' +
+                ", total=" + total +
+                ", content='" + content + '\'' +
+                ", index=" + index +
+                '}';
+    }
 }
