@@ -1,5 +1,20 @@
 package com.note.provider.fiction.proxy;
 
+import com.note.base.dto.file.BaseDto;
+import com.note.base.dto.file.ChapterDto;
+import com.note.base.dto.file.FileParseDto;
+import com.note.base.utils.FileParseUtil;
+import com.note.base.utils.JsonUtil;
+import com.note.entity.fiction.entity.FictionBaseEntity;
+import com.note.provider.fiction.api.AdminApiService;
+import com.note.provider.fiction.dto.request.FictionAddReq;
+import com.note.provider.fiction.dto.request.FictionChapterAddReq;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>TODO </p>
  * <p>
@@ -16,99 +31,39 @@ package com.note.provider.fiction.proxy;
  */
 public class MainFile {
 
-    // TODO 建立作者库
-    public static void main(String[] args) throws Exception {
-//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:spring/applicationContext.xml"});
-//        context.start();
-//        FictionChapterService fictionChapterService = (FictionChapterService)context.getBean("fiction.service.fictionChapterService");
-//        //  保存基本信息
-//        FictionBaseEntity fictionBaseEntity = new FictionBaseEntity();
-//        fictionBaseEntity.setLogicCode(UUIDGenerator.uuid());
-//        fictionBaseEntity.setTitle("");
-//        fictionBaseEntity.setShortDesc("");
-//        fictionBaseEntity.setCoverPhoto("");
-//        fictionBaseEntity.setTypeCode(FictionTypeEnum.ORIGINAL_NORMAL.getType());
-//        fictionBaseEntity.setTypeName(FictionTypeEnum.ORIGINAL_NORMAL.getDesc());
-//        fictionBaseEntity.setAuthorCode("");
-//        fictionBaseEntity.setAuthorName("");
-//        fictionBaseEntity.setFictionStatus(FictionStatusEnum.ING.getType());
-////      fictionBaseEntity.setChapterTotal(); // TODO 删除此字段,保留扩展信息中
-//        fictionBaseEntity.setCreateTime(DateUtil.nowDate());
-//        fictionBaseEntity.setModifyTime(DateUtil.nowDate());
-//        fictionBaseEntity.setCreateUserCode("system");
-//        fictionBaseEntity.setModifyUserCode("system");
-//
-//        // TODO 保存扩展信息
-//        FictionExtentionEntity fictionExtentionEntity = new FictionExtentionEntity();
-//        fictionExtentionEntity.setLogicCode(UUIDGenerator.uuid());
-//        fictionExtentionEntity.setFictionCode(fictionBaseEntity.getLogicCode());
-//        fictionExtentionEntity.setFictionScore(980.0);
-//        fictionExtentionEntity.setFictionScoreNum(100);
-//        fictionExtentionEntity.setFullDesc("");
-//        fictionExtentionEntity.setTotalChapter(0);
-//        fictionExtentionEntity.setTotalWord(0);
-//        fictionExtentionEntity.setLastUpdateTime(DateUtil.nowDate());
-//        fictionExtentionEntity.setLevel(0); // TODO 暂时没有用
-//        fictionExtentionEntity.setFictionViews(0);
-//        fictionExtentionEntity.setCreateTime(DateUtil.nowDate());
-//        fictionExtentionEntity.setModifyTime(DateUtil.nowDate());
-//        fictionExtentionEntity.setCreateUserCode("system");
-//        fictionExtentionEntity.setModifyUserCode("system");
-//        fictionExtentionEntity.setIsDelete(DeleteEnum.NOT_DELETE.getType());
-//
-//        //  保存章节基本信息,扩展信息
-//        FileParseDto fileParseDto = new FileParseDto();
-//        fileParseDto.setEncode("GBK");
-//        fileParseDto.setHeadTag("chapter");
-//        fileParseDto.setPath("d:/");
-//        fileParseDto.setFileName("abc.txt");
-//        List<ChapterDto> chapterDtoList = FileParseUtil.parse(fileParseDto);
-//
-//        System.out.println(JsonUtil.toJson(chapterDtoList));
-//        final List<FictionChapterEntity> list = new ArrayList<>();
-//        if(ObjectUtil.notNull(chapterDtoList)){
-//            chapterDtoList.forEach((ChapterDto chapterDto) -> {
-//                FictionChapterEntity fictionChapterEntity = new FictionChapterEntity();
-//                fictionChapterEntity.setLogicCode(UUIDGenerator.uuid());
-//                fictionChapterEntity.setFictionCode(fictionBaseEntity.getLogicCode());
-//                fictionChapterEntity.setChapterSort(chapterDto.getIndex()+"");
-//                fictionChapterEntity.setChapterName(chapterDto.getTitle());
-//                fictionChapterEntity.setChapterType(ChapterTypeEnum.NORMAL.getType());
-//                fictionChapterEntity.setChapterViews(0);
-//                fictionChapterEntity.setChapterWordCount(chapterDto.getTotal());
-//                fictionChapterEntity.setCreateTime(DateUtil.nowDate());
-//                fictionChapterEntity.setModifyTime(DateUtil.nowDate());
-//                fictionChapterEntity.setCreateUserCode("system");
-//                fictionChapterEntity.setModifyUserCode("system");
-//                fictionChapterEntity.setIsDelete(DeleteEnum.NOT_DELETE.getType());
-//                list.add(fictionChapterEntity);
-//
-//                FictionChapterExtentionEntity fictionChapterExtentionEntity = new FictionChapterExtentionEntity();
-//                fictionChapterExtentionEntity.setLogicCode(UUIDGenerator.uuid());
-//                fictionChapterExtentionEntity.setChapterCode(fictionChapterEntity.getLogicCode());
-//                fictionChapterExtentionEntity.setCreateTime(DateUtil.nowDate());
-//                fictionChapterExtentionEntity.setCreateUserCode("system");
-//                fictionChapterExtentionEntity.setModifyTime(DateUtil.nowDate());
-//                fictionChapterExtentionEntity.setModifyUserCode("system");
-//                fictionChapterExtentionEntity.setIsDelete(DeleteEnum.NOT_DELETE.getType());
-//                fictionChapterExtentionEntity.setChapterContent(chapterDto.getContent());
-//                try {
-//                    fictionChapterService.add(fictionChapterEntity,fictionChapterExtentionEntity);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            });
-//        }
-//
-//        fictionExtentionEntity.setTotalChapter(list.size());
-//        fictionExtentionEntity.setLastChapterName(list.get(list.size()).getChapterName());
-//        fictionExtentionEntity.setLastChapterCode(list.get(list.size()).getLogicCode());
-//
-//
-//        // TODO 一个事务中保存
-//
-//        System.out.println(JsonUtil.toJson(list));
+    public static void main(String[] args) throws IOException {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:spring/applicationContext.xml"});
+        context.start();
+        System.out.println("开始");
+        FileParseDto fileParseDto = new FileParseDto();
+        fileParseDto.setPath("F:/");
+        fileParseDto.setFileName("新建文本文档.txt");
+        fileParseDto.setEncode("UTF-8");
+        Map<String,Object> resultMap = FileParseUtil.access(fileParseDto);
+        BaseDto baseDto = (BaseDto) resultMap.get(FileParseUtil.BASE_DTO);
+        List<ChapterDto> chapterDtoList = (List<ChapterDto>)resultMap.get(FileParseUtil.CHAPTER_DTO_LIST);
 
+        AdminApiService adminApiService = (AdminApiService) context.getBean("fiction.service.adminServiceProxy");
+        FictionAddReq fictionAddReq = new FictionAddReq();
+        fictionAddReq.setTitle(baseDto.getTitle());
+        fictionAddReq.setShortDesc(baseDto.getShortDesc());
+        fictionAddReq.setCoverPhoto(baseDto.getPhoto());
+        fictionAddReq.setTypeCode(baseDto.getType());
+        fictionAddReq.setAuthorName(baseDto.getAuthor());
+        fictionAddReq.setFullDesc(baseDto.getShortDesc());
+        String fictionResult = adminApiService.createFiction(JsonUtil.toJson(fictionAddReq));
+        FictionBaseEntity fictionBaseEntity = JsonUtil.fromJson(fictionResult, FictionBaseEntity.class);
+
+        chapterDtoList.forEach(s->{
+            FictionChapterAddReq fictionChapterAddReq = new FictionChapterAddReq();
+            fictionChapterAddReq.setFictionCode(fictionBaseEntity.getLogicCode());
+            fictionChapterAddReq.setChapterSort(s.getIndex());
+            fictionChapterAddReq.setChapterName(s.getTitle());
+            fictionChapterAddReq.setChapterType(1);// 1 free 2 not free
+            fictionChapterAddReq.setChapterContent(s.getContent());
+            adminApiService.createFictionChapter(JsonUtil.toJson(fictionChapterAddReq));
+        });
+        System.out.println("结束");
 
     }
 

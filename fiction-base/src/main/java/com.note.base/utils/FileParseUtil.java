@@ -11,7 +11,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>解析文件 </p>
@@ -28,6 +30,9 @@ import java.util.List;
  * @since 1.0
  */
 public class FileParseUtil {
+
+    public static final String BASE_DTO = "baseDto";
+    public static final String CHAPTER_DTO_LIST = "chapterDtoList";
 
     /**
      * 解析chapter列表
@@ -78,12 +83,10 @@ public class FileParseUtil {
      * <author></author>
      * <shortDesc></shortDesc>
      * <type></type>
-     *
+     * <photo></photo>
      * @return
      */
-    public static BaseDto parseBase(FileParseDto fileParseDto) throws IOException {
-        Path path = Paths.get(fileParseDto.getPath(), fileParseDto.getFileName()); //获取文件对象
-        List<String> list = Files.readAllLines(path, Charset.forName(fileParseDto.getEncode()));
+    public static BaseDto parseBase(List<String> list) throws IOException {
         BaseDto baseDto = new BaseDto();
         for (String s : list) {
             if (s.contains("<title>")) {
@@ -102,6 +105,10 @@ public class FileParseUtil {
                 String type = s.substring(s.indexOf("<type>") + 6, s.indexOf("</type>"));
                 baseDto.setType(type);
             }
+            if (s.contains("<photo>")) {
+                String photo = s.substring(s.indexOf("<photo>") + 7, s.indexOf("</photo>"));
+                baseDto.setPhoto(photo);
+            }
         }
         return baseDto;
     }
@@ -110,14 +117,11 @@ public class FileParseUtil {
      *
      * <chapterTitle></chapterTitle>
      * <chapterContent></chapterContent>
-     * @param fileParseDto
      * @return
      * @throws IOException
      */
-    public static List<ChapterDto> parseChapters(FileParseDto fileParseDto) throws IOException {
+    public static List<ChapterDto> parseChapters(List<String> list) throws IOException {
         List<ChapterDto> chapterDtoList = new ArrayList<>();
-        Path path = Paths.get(fileParseDto.getPath(), fileParseDto.getFileName()); //获取文件对象
-        List<String> list = Files.readAllLines(path, Charset.forName(fileParseDto.getEncode()));
         ChapterDto chapterDto = null;
         for (int i=0;i<list.size();i++) {
             String s = list.get(i);
@@ -153,15 +157,15 @@ public class FileParseUtil {
         return chapterDtoList;
     }
 
-    public static void main(String[] args) throws IOException {
-        FileParseDto fileParseDto = new FileParseDto();
-        fileParseDto.setPath("F:/");
-        fileParseDto.setFileName("新建文本文档.txt");
-        fileParseDto.setEncode("UTF-8");
-        BaseDto baseDto = FileParseUtil.parseBase(fileParseDto);
-        System.out.println(baseDto);
-        List<ChapterDto> chapterDtoList = FileParseUtil.parseChapters(fileParseDto);
-        System.out.println(chapterDtoList);
+    public static Map<String,Object> access(FileParseDto fileParseDto) throws IOException {
+        Path path = Paths.get(fileParseDto.getPath(), fileParseDto.getFileName()); //获取文件对象
+        List<String> list = Files.readAllLines(path, Charset.forName(fileParseDto.getEncode()));
+        Map<String,Object> resultMap = new HashMap<>();
+        BaseDto baseDto = FileParseUtil.parseBase(list);
+        List<ChapterDto> chapterDtoList = FileParseUtil.parseChapters(list);
+        resultMap.put(BASE_DTO,baseDto);
+        resultMap.put(CHAPTER_DTO_LIST,chapterDtoList);
+        return resultMap;
     }
 
 }

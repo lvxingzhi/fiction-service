@@ -1,5 +1,7 @@
 package com.note.base.dto;
 
+import com.note.base.utils.JsonUtil;
+
 import java.util.HashMap;
 
 /**
@@ -18,12 +20,14 @@ import java.util.HashMap;
  */
 public class ResponseDTO {
 
-    private static final Integer SUCCESS = 0;
-    private static final Integer ERROR = 1;
+    public static final Integer SUCCESS = 0;
+    public static final Integer ERROR = 1;
+    public static final String DATA = "data";
 
     private String message = "";
     private Integer status = SUCCESS;
     private HashMap<String,Object> data = new HashMap<>();
+
 
     private ResponseDTO(){
     }
@@ -73,12 +77,20 @@ public class ResponseDTO {
         this.status = status;
     }
 
-    public HashMap<String, Object> getData() {
-        return data;
+    public void addData(String key,Object value){
+        this.data.put(key,value);
     }
 
-    public void setData(HashMap<String, Object> data) {
-        this.data = data;
+    public void removeData(String key){
+        this.data.remove(key);
     }
 
+    public void getData(String key){
+        this.data.get(key);
+    }
+
+    @Override
+    public String toString() {
+        return JsonUtil.toJson(this);
+    }
 }

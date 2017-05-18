@@ -20,6 +20,7 @@ public class BaseDto {
     private String author;
     private String shortDesc;
     private String type;
+    private String photo;
 
     public String getTitle() {
         return title;
@@ -53,6 +54,14 @@ public class BaseDto {
         this.type = type;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
         return "BaseDto{" +
@@ -60,6 +69,7 @@ public class BaseDto {
                 ", author='" + author + '\'' +
                 ", shortDesc='" + shortDesc + '\'' +
                 ", type='" + type + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }

@@ -1,16 +1,13 @@
 package com.note.provider.fiction.proxy;
 
+import com.note.base.dto.ResponseDTO;
 import com.note.base.enums.DeleteEnum;
 import com.note.base.enums.FictionStatusEnum;
 import com.note.base.enums.FictionTypeEnum;
 import com.note.base.utils.JsonUtil;
 import com.note.base.utils.ObjectUtil;
 import com.note.base.utils.UUIDGenerator;
-import com.note.entity.fiction.entity.FictionBaseEntity;
-import com.note.entity.fiction.entity.FictionChapterEntity;
-import com.note.entity.fiction.entity.FictionChapterExtentionEntity;
-import com.note.entity.fiction.entity.FictionExtentionEntity;
-import com.note.entity.fiction.entity.FictionRankEntity;
+import com.note.entity.fiction.entity.*;
 import com.note.provider.fiction.api.AdminApiService;
 import com.note.provider.fiction.dto.request.FictionAddReq;
 import com.note.provider.fiction.dto.request.FictionChapterAddReq;
@@ -46,7 +43,9 @@ public class AdminServiceProxy implements AdminApiService {
         FictionExtentionEntity fictionExtentionEntity = transFictionExtentionEntity(fictionBaseEntity,fictionAddReq);
         FictionRankEntity fictionRankEntity = transFictionRankEntity(fictionBaseEntity);
         fictionBaseService.createFiction(fictionBaseEntity,fictionExtentionEntity,fictionRankEntity);
-        return "0";
+        ResponseDTO responseDTO = ResponseDTO.getSuccessInstance();
+        responseDTO.addData(ResponseDTO.DATA,fictionBaseEntity);
+        return responseDTO.toString();
     }
 
     @Override
