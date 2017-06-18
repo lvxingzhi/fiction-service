@@ -26,7 +26,7 @@ public class ResponseDTO {
 
     private String message = "";
     private Integer status = SUCCESS;
-    private HashMap<String,Object> data = new HashMap<>();
+    private HashMap<String,String> data = new HashMap<>();
 
 
     private ResponseDTO(){
@@ -78,15 +78,15 @@ public class ResponseDTO {
     }
 
     public void addData(String key,Object value){
-        this.data.put(key,value);
+        this.data.put(key, JsonUtil.toJson(value));
     }
 
     public void removeData(String key){
         this.data.remove(key);
     }
 
-    public void getData(String key){
-        this.data.get(key);
+    public String getData(String key){
+        return this.data.get(key);
     }
 
     @Override

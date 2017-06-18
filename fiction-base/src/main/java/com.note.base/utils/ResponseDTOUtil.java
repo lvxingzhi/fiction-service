@@ -26,7 +26,7 @@ public class ResponseDTOUtil {
         if(!responseDTO.isSuccess()){
             new SystemException(MessageFormat.format("系统RPC调用失败,错误信息:{0}",responseDTO.getMessage()));
         }
-        return (T) responseDTO.getData();
+        return JsonUtil.fromJson(responseDTO.getData(ResponseDTO.DATA),c);
     }
 
 }
