@@ -17,7 +17,6 @@ public class FictionBaseEntity {
     private String authorCode;
     private String authorName;
     private Integer fictionStatus;
-    private Integer chapterTotal;
     private Date createTime;
     private Date modifyTime;
     private String createUserCode;
@@ -78,14 +77,6 @@ public class FictionBaseEntity {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
-    }
-
-    public Integer getChapterTotal() {
-        return chapterTotal;
-    }
-
-    public void setChapterTotal(Integer chapterTotal) {
-        this.chapterTotal = chapterTotal;
     }
 
     public Date getCreateTime() {

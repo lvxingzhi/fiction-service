@@ -12,7 +12,6 @@
         <result column="author_name" property="authorName"/>
         <result column="type_code" property="typeCode"/>
         <result column="type_name" property="typeName"/>
-        <result column="chapter_total" property="chapterTotal"/>
         <result column="create_time" property="createTime"/>
         <result column="create_user_code" property="createUserCode"/>
         <result column="modify_time" property="modifyTime"/>
