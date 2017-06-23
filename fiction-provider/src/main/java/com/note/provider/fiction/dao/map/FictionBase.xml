@@ -69,7 +69,7 @@
 
     <select id="selectByCondition" parameterType="map" resultMap="result">
         select
-        cid,logic_code,title,short_desc,fiction_status,cover_photo,author_code,author_name,type_code,type_name,chapter_total,create_time,create_user_code,modify_time,
+        cid,logic_code,title,short_desc,fiction_status,cover_photo,author_code,author_name,type_code,type_name,create_time,create_user_code,modify_time,
         modify_user_code
          from fiction_base
          <where>

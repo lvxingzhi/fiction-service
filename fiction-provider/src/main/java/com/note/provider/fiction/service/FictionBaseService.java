@@ -2,16 +2,8 @@ package com.note.provider.fiction.service;
 
 import com.note.base.dto.PageDto;
 import com.note.base.utils.ObjectUtil;
-import com.note.entity.fiction.entity.FictionBaseEntity;
-import com.note.entity.fiction.entity.FictionChapterEntity;
-import com.note.entity.fiction.entity.FictionChapterExtentionEntity;
-import com.note.entity.fiction.entity.FictionExtentionEntity;
-import com.note.entity.fiction.entity.FictionRankEntity;
-import com.note.provider.fiction.dao.FictionBaseDao;
-import com.note.provider.fiction.dao.FictionChapterDao;
-import com.note.provider.fiction.dao.FictionChapterExtentionDao;
-import com.note.provider.fiction.dao.FictionExtentionDao;
-import com.note.provider.fiction.dao.FictionRankDao;
+import com.note.entity.fiction.entity.*;
+import com.note.provider.fiction.dao.*;
 import com.note.provider.fiction.dto.request.FictionFindOneReq;
 import com.note.provider.fiction.dto.request.FictionSearchReq;
 import com.note.provider.fiction.dto.response.FictionFindOneResp;

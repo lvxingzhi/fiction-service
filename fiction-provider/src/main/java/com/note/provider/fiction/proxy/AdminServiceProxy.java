@@ -88,7 +88,6 @@ public class AdminServiceProxy implements AdminApiService {
         fictionBaseEntity.setTypeName(FictionTypeEnum.getByType(fictionAddReq.getTypeCode()).getDesc());
         fictionBaseEntity.setAuthorName(fictionAddReq.getAuthorName());
         fictionBaseEntity.setFictionStatus(FictionStatusEnum.ING.getType());
-        fictionBaseEntity.setChapterTotal(0);
         fictionBaseEntity.setCreateTime(new Date());
         fictionBaseEntity.setModifyTime(fictionBaseEntity.getCreateTime());
         fictionBaseEntity.setCreateUserCode("admin");
