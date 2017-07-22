@@ -83,7 +83,7 @@ public class AdminServiceProxy implements AdminApiService {
         fictionBaseEntity.setLogicCode(UUIDGenerator.uuid());
         fictionBaseEntity.setTitle(fictionAddReq.getTitle());
         fictionBaseEntity.setShortDesc(fictionAddReq.getShortDesc());
-        fictionBaseEntity.setCoverPhoto(fictionAddReq.getCoverPhoto());
+        fictionBaseEntity.setCoverPhoto("/resources/image/head/"+fictionBaseEntity.getLogicCode()+".jpg");
         fictionBaseEntity.setTypeCode(fictionAddReq.getTypeCode());
         fictionBaseEntity.setTypeName(FictionTypeEnum.getByType(fictionAddReq.getTypeCode()).getDesc());
         fictionBaseEntity.setAuthorName(fictionAddReq.getAuthorName());
